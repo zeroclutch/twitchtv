@@ -9,6 +9,24 @@ const twitch = new Twitch({
     secret: process.env.TWITCH_SECRET
 });
 
+var topGames = [];
+
+// refresh top games every minute
+//setInterval(() => {
+  twitch.getTopGames()
+  .then(data => {
+    console.log(data.top[0])
+    topGames = [];
+    for(var i = 0; i < data.top.length; i++) {
+      const currentGame = data.top[i];
+      topGames.push({name:currentGame.game.name, image:currentGame.game.box.large, viewers: currentGame.viewers, channels: currentGame.channels})
+    }
+  })
+  .catch(error => {
+      console.error(error);
+  })
+//}, 60000);
+
 // http://expressjs.com/en/starter/static-files.html
 app.use(express.static('public'));
 
