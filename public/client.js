@@ -9,19 +9,20 @@ function callServer(params, endpoint) {
     endpoint +=  "&" + param + "=" + params[param];
   }
   console.log("URL:" + endpoint)
-  xhr.open( "GET", endpoint, true );
+  xhr.open( "GET", endpoint, false );
   xhr.onreadystatechange = function() { 
     if (xhr.readyState == 4 && xhr.status == 200)
         return xhr.responseText;
   }
   xhr.send( null );
+  console.log(xhr.onreadystatechange())
   return xhr.onreadystatechange();
   
 }
 
 var Client = {
   retrieve: function(command, params) {
-    Client[command].callback(callServer((params || {}), Client[command].endpoint));
+    return Client[command].callback(callServer((params || {}), Client[command].endpoint));
   },
   topGames: {
     endpoint: "/topGames",
