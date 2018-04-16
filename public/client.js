@@ -2,8 +2,6 @@
 // client-side js
 // run by the browser each time your view template is loaded
 
-
-
 function callServer(params, endpoint) {
   var xhr = new XMLHttpRequest();
   endpoint += "?data=true"
