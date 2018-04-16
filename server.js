@@ -11,21 +11,26 @@ const twitch = new Twitch({
 
 var topGames = [];
 
-// refresh top games every minute
-//setInterval(() => {
+function refreshTopGames() {
   twitch.getTopGames()
   .then(data => {
-    console.log(data.top[0])
     topGames = [];
     for(var i = 0; i < data.top.length; i++) {
       const currentGame = data.top[i];
       topGames.push({name:currentGame.game.name, image:currentGame.game.box.large, viewers: currentGame.viewers, channels: currentGame.channels})
     }
+    console.log(topGames)
   })
   .catch(error => {
       console.error(error);
   })
-//}, 60000);
+}
+
+// refresh top games every minute
+setInterval(() => {
+  refreshTopGames()
+}, 60000);
+
 
 // http://expressjs.com/en/starter/static-files.html
 app.use(express.static('public'));
@@ -35,7 +40,13 @@ app.get("/", function (request, response) {
   response.sendFile(__dirname + '/views/index.html');
 });
 
+app.get("/topGames", function (request, response) {
+  response.send(topGames);
+});
+
 // listen for requests :)
 var listener = app.listen(process.env.PORT, function () {
   console.log('Your app is listening on port ' + listener.address().port);
 });
+
+refreshTopGames()
