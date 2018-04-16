@@ -33,8 +33,8 @@
             Find a game
           </h6>
           <br>
-          <form>
-            <input class="input is-wide" type="text" placeholder="Name of Game, (e.g. Fortnite)">
+          <form onsubmit="app.changeGame(currentGame)">
+            <input class="input is-wide" type="text" v-model="currentGame" placeholder="Name of Game, (e.g. Fortnite)">
             <button class="button is-success">
                <i class="fa fa-search"></i> 
             </button>

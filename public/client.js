@@ -2,6 +2,8 @@
 // client-side js
 // run by the browser each time your view template is loaded
 
+
+
 function callServer(params, endpoint) {
   var xhr = new XMLHttpRequest();
   endpoint += "?data=true"
@@ -46,11 +48,13 @@ const app = new Vue({
     state: "directory",
     topGames: Client.retrieve("topGames"),
     topStreams: {},
+    currentGame: "",
     currentStream: "nl_Kripp"
   },
   methods: {
     changeGame: function(game){
       this.topStreams = Client.retrieve("topStreams", {game: game}).streams;
+      this.currentGame = game
       this.state = "streams"
     }, watchStream: function(stream){
       this.currentStream = stream;
