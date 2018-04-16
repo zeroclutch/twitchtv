@@ -36,3 +36,9 @@ var Client = {
 }
 
 Client.retrieve("topGames")
+
+const app = new Vue({
+  el: "",
+  data: {
+  }
+});
