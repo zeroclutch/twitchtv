@@ -35,6 +35,7 @@ var Client = {
   }
 }
 
+var Vue;
 
 const app = new Vue({
   el: "#app",

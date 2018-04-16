@@ -54,15 +54,15 @@
       <hr>
       
       <section class="section columns is-centered">
-        <div class="columns column is-10 is-centered">
-          
-          <div class="is-4 column column-item" v-for="game in topGames">
+        <div class="columns column is-10 is-centered is-multiline"> 
+          <div class="is-4 column column-item " v-for="game in topGames">
             <div class="box is-collapsed">
-              <img src="https://static-cdn.jtvnw.net/ttv-boxart/Fortnite-272x380.jpg">
+              <img v-bind:src="game.image">
             </div>
             <div class="caption">
-              <b>Fortnite</b><br>
-              0 Channels
+              <b>{{ game.name }}</b><br>
+              {{ game.channels }} Channels<br>
+              {{ game.viewre }} Channels<br>
             </div>
           </div>
           
