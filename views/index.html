@@ -67,7 +67,7 @@
         <div class="columns column is-10 is-centered is-multiline"> 
           <div class="is-4 column column-item " v-for="stream in topStreams" v-on:click="watchStream(stream.name)">
             <div class="box is-collapsed-stream">
-              <img v-bind:src="stream.preview">
+              <img v-bind:src="stream.preview || 'https://cdn.glitch.com/efe6e070-2c1d-436d-9464-ff6641eae224%2Ftwitchbg.jpg?1523863178418'">
             </div>
             <div class="caption">
               <b>{{ stream.name || "Loading" }}</b>
@@ -79,10 +79,8 @@
       </section>
       
       <section v-if="state === 'watching'" class="section columns is-centered">
-        <div class="column is-8">
           <!-- Add a placeholder for the Twitch embed -->
           <div id="twitch-embed"></div>
-        </div>
       </section>
       
     </div>

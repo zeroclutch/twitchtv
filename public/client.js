@@ -55,13 +55,13 @@ const app = new Vue({
     }, watchStream: function(stream){
       this.currentStream = stream;
       this.state = "watching"
-      setTimeout(function(){
-      new Twitch.Embed("twitch-embed", {
-        width: 854,
-        height: 480,
-        channel: this.currentStream
+      Vue.nextTick(function(){
+        new Twitch.Embed("twitch-embed", {
+          width: 1350,
+          height: 780,
+          channel: stream
+        });
       });
-      }, 2000);
     }
   }
 });
