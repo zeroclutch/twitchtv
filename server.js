@@ -79,14 +79,14 @@ app.get("/featuredStreams", function (request, response) {
         var featuredStreams = [];
     console.log(data)
     for(var i = 0; i < data.featured.length; i++) {
-      const currentStream = data.featured[i];
+      const currentStream = data.featured[i].stream;
       featuredStreams.push({
-        name:currentStream.title,
-        title:currentStream.text,
-        preview:currentStream.image,
-        viewers: currentStream.stream.viewers,
-        quality: currentStream.stream.video_height,
-        streamType: currentStream.stream.stream_type
+        name:currentStream.channel.name,
+        title:currentStream.channel.status,
+        preview:currentStream.preview.large,
+        viewers: currentStream.viewers,
+        quality: currentStream.video_height,
+        streamType: currentStream.stream_type
       })
     }
     response.send(featuredStreams)

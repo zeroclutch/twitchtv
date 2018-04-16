@@ -52,13 +52,13 @@ const app = new Vue({
     state: "directory",
     topGames: Client.retrieve("topGames"),
     topStreams: {},
-    featuredStreams: {},
+    featuredStreams: [],
     currentGame: "",
     currentStream: ""
   },
   methods: {
     viewFeatured: function() {
-      this.featuredStreams = Client.retrieve("featuredStreams", {}).streams;
+      this.featuredStreams = Client.retrieve("featuredStreams", {});
       this.state = "featured"
     },
     changeGame: function(game) {
