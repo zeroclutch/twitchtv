@@ -53,20 +53,20 @@
       
       <hr>
       
-      <section class="section columns is-centered">
+      <section v-if="state === 'directory'" class="section columns is-centered">
         <div class="columns column is-10 is-centered is-multiline"> 
           <div class="is-4 column column-item " v-for="game in topGames" v-on:click="changeGame(game)">
             <div class="box is-collapsed">
               <img v-bind:src="game.image">
             </div>
             <div class="caption">
-              <b>{{ game.name }}</b><br>
+              <b>{{ game.name || "Loading" }}</b><br>
               <span class="has-text-success">
-              {{ game.channels }}
+              {{ game.channels || "Loading" }}
                 <i class="fas fa-video"></i>
               </span>
               <br>
-              <span class="has-text-danger">{{ game.viewers }} <i class="fa fa-eye"></i></span> <br>
+              <span class="has-text-danger">{{ game.viewers || "Loading" }} <i class="fa fa-eye"></i></span> <br>
             </div>
           </div>
           

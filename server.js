@@ -49,6 +49,7 @@ app.get("/topStreams", function (request, response) {
   console.log(options)
   twitch.getTopStreams(options)
     .then(data => {
+        console.log(data)
         response.send(data)
     })
     .catch(error => {
