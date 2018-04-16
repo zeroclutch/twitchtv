@@ -35,6 +35,12 @@ var Client = {
     callback: function(data) {
       return JSON.parse(data)
     }
+  },
+  topStreams: {
+    endpoint: "/featuredStreams",
+    callback: function(data) {
+      return JSON.parse(data)
+    }
   }
 }
 
@@ -50,6 +56,7 @@ const app = new Vue({
     currentStream: ""
   },
   methods: {
+    view
     changeGame: function(game){
       this.topStreams = Client.retrieve("topStreams", {game: game}).streams;
       this.currentGame = game
@@ -58,6 +65,7 @@ const app = new Vue({
       this.currentStream = stream;
       this.state = "watching"
       Vue.nextTick(function(){
+        document.getElementById("twitch-embed").innerHTML = "";
         new Twitch.Embed("twitch-embed", {
           width: 1350,
           height: 780,

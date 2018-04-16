@@ -72,6 +72,34 @@ app.get("/topStreams", function (request, response) {
     })
 });
 
+app.get("/featuredStreams", function (request, response) {
+  const options = {game: request.query.game, language: "en"};
+  twitch.getFeaturedStreams(options)
+    .then(data => {
+        var topStreams = {
+          total: data.total,
+          streams: []
+        };
+    for(var i = 0; i < data.streams.length; i++) {
+      const currentStream = data.streams[i];
+      console.log(currentStream)
+      topStreams.streams.push({
+        name:currentStream.channel.name,
+        title:currentStream.channel.status,
+        preview:currentStream.preview.large,
+        viewers: currentStream.viewers,
+        quality: currentStream.video_height,
+        streamType: currentStream.stream_type
+      })
+    }
+    response.send(topStreams)
+    })
+    .catch(error => {
+        console.error(error);
+        response.send({"error": error})
+    })
+});
+
 // listen for requests :)
 var listener = app.listen(process.env.PORT, function () {
   console.log('Your app is listening on port ' + listener.address().port);
