@@ -2,8 +2,8 @@
 // client-side js
 // run by the browser each time your view template is loaded
 
-function callServer(params, endpoint, callback) {
-  var xhr = new XMLHttpRequest(), response;
+function callServer(params, endpoint) {
+  var xhr = new XMLHttpRequest();
   endpoint += "?data=true"
   for (var param in params) {
     endpoint +=  "&" + param + "=" + params[param];
@@ -12,18 +12,16 @@ function callServer(params, endpoint, callback) {
   xhr.open( "GET", endpoint, true );
   xhr.onreadystatechange = function() { 
     if (xhr.readyState == 4 && xhr.status == 200)
-        response = xhr.responseText;
+        return xhr.responseText;
   }
   xhr.send( null );
-  while(response === undefined) {
-    
-  }
+  return xhr.onreadystatechange();
   
 }
 
 var Client = {
   retrieve: function(command, params) {
-    callServer((params || {}), Client[command].endpoint, Client[command].callback)
+    Client[command].callback(callServer((params || {}), Client[command].endpoint));
   },
   topGames: {
     endpoint: "/topGames",
