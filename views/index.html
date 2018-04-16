@@ -31,29 +31,29 @@
       </nav>
       
       <section class="section columns is-centered">
-        <div class="column is-4 box is-padded has-background-info">
-          <h6 class="title is-4 has-text-white">
-            <i class="fa fa-gamepad fa-3x"></i><br>
+        <div class="column is-4 box is-padded">
+          <h6 class="title is-4">
+            <i class="fa fa-gamepad fa-3x has-text-info"></i><br>
             Find a game 
           </h6>
           <br>
           <div v-on:keyup.enter="changeGame(currentGame)">
             <input class="input is-wide" type="text" v-model="currentGame" placeholder="Name of Game, (e.g. Fortnite)">
-            <button v-on:click="changeGame(currentGame)" class="button is-success">
+            <button v-on:click="changeGame(currentGame)" class="button is-info">
                <i class="fa fa-search"></i> 
             </button>
           </div>
         </div>
         
-        <div class="column is-4 box is-padded has-background-primary">
-          <h6 class="title is-4 has-text-white">
-            <i class="fa fa-video fa-3x"></i><br>
+        <div class="column is-4 box is-padded">
+          <h6 class="title is-4">
+            <i class="fa fa-video fa-3x has-text-primary"></i><br>
             Find a stream 
           </h6>
           <br>
           <div v-on:keyup.enter="watchStream(currentStream)">
-            <input class="input is-wide" type="text" v-model="currentStream" placeholder="Name of Streamer, (e.g. eleaguetv)">
-            <button v-on:click="watchStream(currentStream)" class="button is-success">
+            <input class="input is-wide is-live" type="text" v-model="currentStream" placeholder="Name of Streamer, (e.g. eleaguetv)">
+            <button v-on:click="watchStream(currentStream)" class="button is-primary">
                <i class="fa fa-search"></i> 
             </button>
           </div>
