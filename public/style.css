@@ -37,3 +37,11 @@
   max-height: 380px;
   margin: 10px auto;
 }
+
+.box.is-padded {
+  padding: 50px;
+}
+
+.icon {
+    display: inline;
+}

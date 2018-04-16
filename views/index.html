@@ -37,7 +37,7 @@
       </nav>
       
       <section class="section columns is-centered">
-        <div class="column is-10 is-centered box">
+        <div class="column is-5 is-centered box is-padded has-background-light">
           <h6 class="title is-4">
             Find a game
           </h6>
@@ -55,14 +55,18 @@
       
       <section class="section columns is-centered">
         <div class="columns column is-10 is-centered is-multiline"> 
-          <div class="is-4 column column-item " v-for="game in topGames">
+          <div class="is-4 column column-item " v-for="game in topGames" v-on:click="changeGame(game)">
             <div class="box is-collapsed">
               <img v-bind:src="game.image">
             </div>
             <div class="caption">
               <b>{{ game.name }}</b><br>
-              {{ game.channels }} Channels<br>
-              {{ game.viewre }} Channels<br>
+              <span class="has-text-success">
+              {{ game.channels }}
+                <i class="fas fa-video"></i>
+              </span>
+              <br>
+              <span class="has-text-danger">{{ game.viewers }} <i class="fa fa-eye"></i></span> <br>
             </div>
           </div>
           
