@@ -28,17 +28,31 @@
       </nav>
       
       <section class="section columns is-centered">
-        <div class="column is-5 is-centered box is-padded has-background-light">
-          <h6 class="title is-4">
-            Find a game
+        <div class="column is-4 box is-padded has-background-info">
+          <h6 class="title is-4 has-text-white">
+            <i class="fa fa-gamepad fa-3x"></i><br>
+            Find a game 
           </h6>
           <br>
-          <form v-on:keyup.enter="changeGame(currentGame)">
+          <div v-on:keyup.enter="changeGame(currentGame)">
             <input class="input is-wide" type="text" v-model="currentGame" placeholder="Name of Game, (e.g. Fortnite)">
             <button v-on:click="changeGame(currentGame)" class="button is-success">
                <i class="fa fa-search"></i> 
             </button>
-          </form>
+          </div>
+        </div>
+        
+        <div class="column is-4 box is-padded has-background-primary">
+          <h6 class="title is-4 has-text-white">
+            Find a stream
+          </h6>
+          <br>
+          <div v-on:keyup.enter="changeGame(currentGame)">
+            <input class="input is-wide" type="text" v-model="currentGame" placeholder="Name of Game, (e.g. Fortnite)">
+            <button v-on:click="changeGame(currentGame)" class="button is-success">
+               <i class="fa fa-search"></i> 
+            </button>
+          </div>
         </div>
       </section>
       
@@ -70,8 +84,8 @@
               <img v-bind:src="stream.preview || 'https://cdn.glitch.com/efe6e070-2c1d-436d-9464-ff6641eae224%2Ftwitchbg.jpg?1523863178418'">
             </div>
             <div class="caption">
-              <b>{{ stream.name || "Loading" }}</b>
-              <br>
+              <b>{{ stream.name || "Loading" }}</b><br>
+              {{ stream.title || "Loading" }}<br>
               <span class="has-text-danger">{{ stream.viewers || "Loading" }} <i class="fa fa-eye"></i></span> <br>
             </div>
           </div>

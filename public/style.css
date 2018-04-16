@@ -42,7 +42,8 @@
 }
 
 .box.is-padded {
-  padding: 50px;
+  padding: 30px;
+  margin: 20px;
 }
 
 .icon {

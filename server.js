@@ -54,16 +54,17 @@ app.get("/topStreams", function (request, response) {
         };
     for(var i = 0; i < data.streams.length; i++) {
       const currentStream = data.streams[i];
+      console.log(currentStream)
       topStreams.streams.push({
         name:currentStream.channel.name,
+        title:currentStream.channel.status,
         preview:currentStream.preview.large,
         viewers: currentStream.viewers,
         quality: currentStream.video_height,
         streamType: currentStream.stream_type
       })
     }
-        //console.log(data)
-        response.send(topStreams)
+    response.send(topStreams)
     })
     .catch(error => {
         console.error(error);
