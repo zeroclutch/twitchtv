@@ -39,7 +39,7 @@
           <br>
           <div v-on:keyup.enter="changeGame(currentGame)">
             <input class="input is-wide is-info" type="text" v-model="currentGame" placeholder="Name of Game, (e.g. Fortnite)">
-            <button v-on:click="changeGame(currentGame)" class="button is-info">
+            <button v-on:click="changeGame(currentGame)" class="button is-info game-search">
                <i class="fa fa-search"></i> 
             </button>
           </div>
@@ -53,7 +53,7 @@
           <br>
           <div v-on:keyup.enter="watchStream(currentStream)">
             <input class="input is-wide is-primary" type="text" v-model="currentStream" placeholder="Name of Streamer, (e.g. eleaguetv)">
-            <button v-on:click="watchStream(currentStream)" class="button is-primary">
+            <button v-on:click="watchStream(currentStream)" class="button is-primary stream-search">
                <i class="fa fa-search"></i> 
             </button>
           </div>

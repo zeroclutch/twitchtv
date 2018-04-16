@@ -39,6 +39,8 @@ var Client = {
   featuredStreams: {
     endpoint: "/featuredStreams",
     callback: function(data) {
+      const button = document.querySelector(".game-search");
+      button.className = button.className.replace("loading","");
       return JSON.parse(data)
     }
   }
