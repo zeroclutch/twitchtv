@@ -73,7 +73,7 @@ app.get("/topStreams", function (request, response) {
 });
 
 app.get("/featuredStreams", function (request, response) {
-  const options = {game: request.query.game, language: "en"};
+  const options = {game: request.query.game};
   twitch.getFeaturedStreams(options)
     .then(data => {
         var featuredStreams = [];
