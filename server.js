@@ -19,7 +19,6 @@ function refreshTopGames() {
       const currentGame = data.top[i];
       topGames.push({name:currentGame.game.name, image:currentGame.game.box.large, viewers: currentGame.viewers, channels: currentGame.channels})
     }
-    console.log(topGames)
   })
   .catch(error => {
       console.error(error);
@@ -46,13 +45,15 @@ app.get("/topGames", function (request, response) {
 
 app.get("/topStreams", function (request, response) {
   const options = {game: request.query.game, language: "en"}; 
+  console.log(options)
   twitch.getTopStreams(options)
     .then(data => {
-    response.send(data)
-  })
-  .catch(error => {
-      console.error(error);
-  })
+      response.send(data)
+      //console.log(data)
+    })
+    .catch(error => {
+        console.error(error);
+    })
 });
 
 // listen for requests :)

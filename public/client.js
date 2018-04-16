@@ -3,11 +3,11 @@
 
 function callServer(params, endpoint, callback) {
   var xhr = new XMLHttpRequest();
-  var url = new URL(window.location + endpoint);
+  endpoint += "?data=true"
   for (var param in params) {
-    url.searchParams.append(param, params[param]);
+    endpoint +=  "&" + param + "=" + params[param];
   }
-
+  console.log("URL:" + endpoint)
   xhr.open( "GET", endpoint, false ); // false for synchronous request
   xhr.onreadystatechange = function() { 
     if (xhr.readyState == 4 && xhr.status == 200)
@@ -24,13 +24,13 @@ var Client = {
   topGames: {
     endpoint: "/topGames",
     callback: function(data) {
-      console.log(data)
+      console.log(JSON.parse(data))
     }
   },
   topStreams: {
     endpoint: "/topStreams",
     callback: function(data) {
-      console.log(data)
+      console.log(JSON.parse(data))
     }
   }
 }
