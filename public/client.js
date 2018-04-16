@@ -47,7 +47,7 @@ const app = new Vue({
     topGames: Client.retrieve("topGames"),
     topStreams: {},
     currentGame: "",
-    currentStream: "nl_Kripp"
+    currentStream: ""
   },
   methods: {
     changeGame: function(game){

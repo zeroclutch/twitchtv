@@ -44,11 +44,12 @@
         
         <div class="column is-4 box is-padded has-background-primary">
           <h6 class="title is-4 has-text-white">
-            Find a stream
+            <i class="fa fa-video fa-3x"></i><br>
+            Find a stream 
           </h6>
           <br>
           <div v-on:keyup.enter="changeGame(currentGame)">
-            <input class="input is-wide" type="text" v-model="currentGame" placeholder="Name of Game, (e.g. Fortnite)">
+            <input class="input is-wide" type="text" v-model="currentStream" placeholder="Name of Streamer, (e.g. eleaguetv)">
             <button v-on:click="changeGame(currentGame)" class="button is-success">
                <i class="fa fa-search"></i> 
             </button>
