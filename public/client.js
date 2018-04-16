@@ -50,6 +50,7 @@ const app = new Vue({
   methods: {
     changeGame: function(game){
       this.topStreams = Client.retrieve("topStreams", {game: game});
+      this.state = "streams"
     }
   }
 });

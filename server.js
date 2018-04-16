@@ -50,18 +50,20 @@ app.get("/topStreams", function (request, response) {
     .then(data => {
     console.log(data.channel)
         var topStreams = {
-          total: data.total
+          total: data.total,
+          streams: []
         };
     for(var i = 0; i < data.streams.length; i++) {
       const currentStream = data.streams[i];
       topStreams.streams.push({
-        channel:currentStream.channel,
-        preview:currentStream.preview.box.large,
+        name:currentStream.channel.name,
+        preview:currentStream.preview.large,
         viewers: currentStream.viewers,
-        quality: currentStream.video_height
+        quality: currentStream.video_height,
+        streamType: currentStream.stream_type
       })
     }
-        console.log(data)
+        //console.log(data)
         response.send(data)
     })
     .catch(error => {
