@@ -111,9 +111,9 @@
         </div>
       </section>
       
-      <section v-if="state === 'watching'" class="section columns is-centered">
+      <section class="section columns is-centered">
           <!-- Add a placeholder for the Twitch embed -->
-          <div id="twitch-embed"></div>
+          <div id="twitch-embed" v-show="state === 'watching'"></div>
       </section>
       
     </div>
