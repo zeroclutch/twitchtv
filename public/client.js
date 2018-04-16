@@ -36,7 +36,7 @@ var Client = {
       return JSON.parse(data)
     }
   },
-  topStreams: {
+  featuredStreams: {
     endpoint: "/featuredStreams",
     callback: function(data) {
       return JSON.parse(data)
@@ -52,12 +52,16 @@ const app = new Vue({
     state: "directory",
     topGames: Client.retrieve("topGames"),
     topStreams: {},
+    featuredStreams: {},
     currentGame: "",
     currentStream: ""
   },
   methods: {
-    view
-    changeGame: function(game){
+    viewFeatured: function() {
+      this.featuredStreams = Client.retrieve("featuredStreams", {}).streams;
+      this.state = "featured"
+    },
+    changeGame: function(game) {
       this.topStreams = Client.retrieve("topStreams", {game: game}).streams;
       this.currentGame = game
       this.state = "streams"

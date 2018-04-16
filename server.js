@@ -76,23 +76,20 @@ app.get("/featuredStreams", function (request, response) {
   const options = {game: request.query.game, language: "en"};
   twitch.getFeaturedStreams(options)
     .then(data => {
-        var topStreams = {
-          total: data.total,
-          streams: []
-        };
-    for(var i = 0; i < data.streams.length; i++) {
-      const currentStream = data.streams[i];
-      console.log(currentStream)
-      topStreams.streams.push({
-        name:currentStream.channel.name,
-        title:currentStream.channel.status,
-        preview:currentStream.preview.large,
-        viewers: currentStream.viewers,
-        quality: currentStream.video_height,
-        streamType: currentStream.stream_type
+        var featuredStreams = [];
+    console.log(data)
+    for(var i = 0; i < data.featured.length; i++) {
+      const currentStream = data.featured[i];
+      featuredStreams.push({
+        name:currentStream.title,
+        title:currentStream.text,
+        preview:currentStream.image,
+        viewers: currentStream.stream.viewers,
+        quality: currentStream.stream.video_height,
+        streamType: currentStream.stream.stream_type
       })
     }
-    response.send(topStreams)
+    response.send(featuredStreams)
     })
     .catch(error => {
         console.error(error);
