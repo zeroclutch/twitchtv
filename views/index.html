@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <title>Not Twitch TV</title>
-    <meta name="description" content="">
+    <meta name="description" content="View Twitch streams anywhere">
     <link id="favicon" rel="icon" href="https://glitch.com/edit/favicon-app.ico" type="image/x-icon">
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -46,7 +46,7 @@
       
       <section v-if="state === 'directory'" class="section columns is-centered">
         <div class="columns column is-10 is-centered is-multiline"> 
-          <div class="is-4 column column-item " v-for="game in topGames" v-on:click="changeGame(game.name)">
+          <div class="is-3 column column-item " v-for="game in topGames" v-on:click="changeGame(game.name)">
             <div class="box is-collapsed">
               <img v-bind:src="game.image">
             </div>
