@@ -3,7 +3,7 @@
 
 function callServer(params, endpoint, callback) {
   var xhr = new XMLHttpRequest();
-  var url = new URL(endpoint);
+  var url = new URL(window.location + endpoint);
   for (var param in params) {
     url.searchParams.append(param, params[param]);
   }
@@ -19,7 +19,7 @@ function callServer(params, endpoint, callback) {
 
 var Client = {
   retrieve: function(command, params) {
-    callServer(params, Client[command].endpoint, Client[command].callback)
+    callServer((params || null), Client[command].endpoint, Client[command].callback)
   },
   topGames: {
     endpoint: "/topGames",
@@ -35,4 +35,4 @@ var Client = {
   }
 }
 
-Client.retrieve({},"topGames")
+Client.retrieve("topGames")

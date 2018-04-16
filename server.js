@@ -44,6 +44,17 @@ app.get("/topGames", function (request, response) {
   response.send(topGames);
 });
 
+app.get("/topStreams", function (request, response) {
+  const options = {game: request.query.game, language: "en"}; 
+  twitch.getTopStreams(options)
+    .then(data => {
+    response.send(data)
+  })
+  .catch(error => {
+      console.error(error);
+  })
+});
+
 // listen for requests :)
 var listener = app.listen(process.env.PORT, function () {
   console.log('Your app is listening on port ' + listener.address().port);
