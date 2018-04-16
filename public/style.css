@@ -3,6 +3,15 @@
   padding-top: 5px;
 }
 
+.section {
+  margin: 0 !important;
+}
+
+.title {
+  margin: 0 !important;
+  text-align: center;
+}
+
 .column-item {
   border-radius: 5px;
   transition: background-color 0.1s;
@@ -10,7 +19,7 @@
 }
 
 .column-item:hover {
-  background-color: #eee;
+  background-color: #f8f8f8;
 }
 
 .box.is-collapsed {
