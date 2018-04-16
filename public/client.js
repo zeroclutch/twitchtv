@@ -24,21 +24,21 @@ var Client = {
   topGames: {
     endpoint: "/topGames",
     callback: function(data) {
-      console.log(JSON.parse(data))
+      return JSON.parse(data)
     }
   },
   topStreams: {
     endpoint: "/topStreams",
     callback: function(data) {
-      console.log(JSON.parse(data))
+      return JSON.parse(data)
     }
   }
 }
 
-Client.retrieve("topGames")
 
 const app = new Vue({
   el: "#app",
   data: {
+    topGames: Client.retrieve("topGames")
   }
 });

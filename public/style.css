@@ -12,6 +12,10 @@
   text-align: center;
 }
 
+.is-wide {
+  width: calc(100% - 50px) !important;
+}
+
 .column-item {
   border-radius: 5px;
   transition: background-color 0.1s;

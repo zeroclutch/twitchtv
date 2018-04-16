@@ -39,13 +39,13 @@
       <section class="section columns is-centered">
         <div class="column is-10 is-centered box">
           <h6 class="title is-4">
-            <i class="fa fa-search is-success"></i> Find a game
+            Find a game
           </h6>
           <br>
           <form>
-            <input class="input " type="text" placeholder="Name of Game, (e.g. Fortnite)">
+            <input class="input is-wide" type="text" placeholder="Name of Game, (e.g. Fortnite)">
             <button class="button is-success">
-              Search
+               <i class="fa fa-search"></i> 
             </button>
           </form>
         </div>
@@ -55,16 +55,8 @@
       
       <section class="section columns is-centered">
         <div class="columns column is-10 is-centered">
-          <div class="is-4 column">
-            <div class="box">
-            </div>
-            <div class="caption">
-              Fortnite<br>
-              0 players
-            </div>
-          </div>
           
-          <div class="is-4 column column-item">
+          <div class="is-4 column column-item" v-for="game in topGames">
             <div class="box is-collapsed">
               <img src="https://static-cdn.jtvnw.net/ttv-boxart/Fortnite-272x380.jpg">
             </div>
@@ -74,19 +66,11 @@
             </div>
           </div>
           
-          <div class="is-4 column">
-            <div class="box">
-            </div>
-            <div class="caption">
-              Fortnite<br>
-              0 players
-            </div>
-          </div>
         </div>
       </section>
     </div>
     <!-- import the webpage's client-side javascript file -->
     <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
-    <script src="/client.js"></script>
+    <script src="client.js"></script>
   </body>
 </html>
