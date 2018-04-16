@@ -24,6 +24,7 @@ function refreshTopGames() {
       console.error(error);
   })
 }
+refreshTopGames()
 
 // refresh top games every minute
 setInterval(() => {
@@ -44,15 +45,15 @@ app.get("/topGames", function (request, response) {
 });
 
 app.get("/topStreams", function (request, response) {
-  const options = {game: request.query.game, language: "en"}; 
+  const options = {game: request.query.game, language: "en"};
   console.log(options)
   twitch.getTopStreams(options)
     .then(data => {
-      response.send(data)
-      //console.log(data)
+        response.send(data)
     })
     .catch(error => {
         console.error(error);
+        response.send({"error": error})
     })
 });
 
@@ -61,4 +62,3 @@ var listener = app.listen(process.env.PORT, function () {
   console.log('Your app is listening on port ' + listener.address().port);
 });
 
-refreshTopGames()
