@@ -8,14 +8,12 @@ function callServer(params, endpoint) {
   for (var param in params) {
     endpoint +=  "&" + param + "=" + params[param];
   }
-  console.log("URL:" + endpoint)
   xhr.open( "GET", endpoint, false );
   xhr.onreadystatechange = function() { 
     if (xhr.readyState == 4 && xhr.status == 200)
         return xhr.responseText;
   }
   xhr.send( null );
-  console.log(xhr.onreadystatechange())
   return xhr.onreadystatechange();
   
 }
@@ -69,8 +67,8 @@ const app = new Vue({
       button.classList.add("is-loading");
       
       this.topStreams = Client.retrieve("topStreams", {game: game}).streams;
-      this.currentGame = game
-      this.state = "streams"
+      this.currentGame = game;
+      this.state = "streams";
     }, watchStream: function(stream) {
       //Loading button
       const button = document.querySelector(".stream-search");
@@ -85,7 +83,7 @@ const app = new Vue({
           height: 780,
           channel: stream
         });
-        const button = document.querySelector(".game-search");
+        const button = document.querySelector(".stream-search");
         button.classList.remove('is-loading');
       });
     }
