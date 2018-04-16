@@ -1,12 +1,13 @@
-// server.js
-// where your node app starts
-
 // init project
-var express = require('express');
-var app = express();
+const express = require('express');
+const app = express();
 
-// we've started you off with Express, 
-// but feel free to use whatever libs or frameworks you'd like through `package.json`.
+// add twitch stuff
+const Twitch = require("twitch.tv-api");
+const twitch = new Twitch({
+    id: process.env.TWITCH_ID,
+    secret: process.env.TWITCH_SECRET
+});
 
 // http://expressjs.com/en/starter/static-files.html
 app.use(express.static('public'));

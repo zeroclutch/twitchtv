@@ -1,5 +1,6 @@
 dependencies:
   express: 4.16.3
+  twitch.tv-api: 1.2.4
 packages:
   /accepts/1.3.5:
     dependencies:
@@ -14,6 +15,10 @@ packages:
     dev: false
     resolution:
       integrity: sha1-ml9pkFGx5wczKPKgCJaLZOopVdI=
+  /bluebird/3.5.1:
+    dev: false
+    resolution:
+      integrity: sha512-MKiLiV+I1AA596t9w1sQJ8jkiSr5+ZKi0WKrYGUn6d1Fx+Ij4tIj+m2WMQSGczs5jZVxV339chE8iwk6F64wjA==
   /body-parser/1.18.2:
     dependencies:
       bytes: 3.0.0
@@ -334,6 +339,12 @@ packages:
       node: '>= 0.6'
     resolution:
       integrity: sha512-zhSCtt8v2NDrRlPQpCNtw/heZLtfUDqxBM1udqikb/Hbk52LK4nQSwr10u77iopCW5LsyHpuXS0GnEc48mLeew==
+  /twitch.tv-api/1.2.4:
+    dependencies:
+      bluebird: 3.5.1
+    dev: false
+    resolution:
+      integrity: sha512-Q+QU/KbFMkHL1MUVUNYgWKpKBoWb86nc9d8sL0KnsiuBsQM3f19fqGaB2hg1/COCuTCfHqVxxASA8dIOZDHIvA==
   /type-is/1.6.16:
     dependencies:
       media-typer: 0.3.0
@@ -366,3 +377,4 @@ shrinkwrapMinorVersion: 4
 shrinkwrapVersion: 3
 specifiers:
   express: ^4.16.3
+  twitch.tv-api: ^1.2.4
