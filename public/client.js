@@ -33,14 +33,14 @@ var Client = {
   topStreams: {
     endpoint: "/topStreams",
     callback: function(data) {
+      const button = document.querySelector(".game-search");
+      button.classList.remove("is-loading");
       return JSON.parse(data)
     }
   },
   featuredStreams: {
     endpoint: "/featuredStreams",
     callback: function(data) {
-      const button = document.querySelector(".game-search");
-      button.className = button.className.replace("loading","");
       return JSON.parse(data)
     }
   }
@@ -64,10 +64,18 @@ const app = new Vue({
       this.state = "featured"
     },
     changeGame: function(game) {
+      //Loading button
+      const button = document.querySelector(".game-search");
+      button.classList.add("is-loading");
+      
       this.topStreams = Client.retrieve("topStreams", {game: game}).streams;
       this.currentGame = game
       this.state = "streams"
-    }, watchStream: function(stream){
+    }, watchStream: function(stream) {
+      //Loading button
+      const button = document.querySelector(".stream-search");
+      button.classList.add("is-loading");
+      
       this.currentStream = stream;
       this.state = "watching"
       Vue.nextTick(function(){
@@ -77,6 +85,8 @@ const app = new Vue({
           height: 780,
           channel: stream
         });
+        const button = document.querySelector(".game-search");
+        button.classList.remove('is-loading');
       });
     }
   }
