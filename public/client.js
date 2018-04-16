@@ -94,5 +94,5 @@ const app = new Vue({
         button.classList.remove('is-loading');
       });
     }
-  }
+  }, router
 });
