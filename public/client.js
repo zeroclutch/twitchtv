@@ -44,7 +44,7 @@ var Client = {
   }
 }
 
-var Vue, Twitch
+var Vue, Twitch, VueRouter;
 
 const app = new Vue({
   el: "#app",
@@ -89,3 +89,10 @@ const app = new Vue({
     }
   }
 });
+
+const router = new VueRouter({
+  routes: [
+    // dynamic segments start with a colon
+    { path: '/stream/:currentStream', component: "" }
+  ]
+})
