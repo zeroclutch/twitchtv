@@ -45,11 +45,11 @@ const app = new Vue({
   data: {
     state: "directory",
     topGames: Client.retrieve("topGames"),
-    topStreams: ""
+    topStreams: {}
   },
   methods: {
     changeGame: function(game){
-      this.topStreams = Client.retrieve("topStreams", {game: game});
+      this.topStreams = Client.retrieve("topStreams", {game: game}).streams;
       this.state = "streams"
     }
   }

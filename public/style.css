@@ -35,8 +35,10 @@
   padding: 0 !important;
   overflow: hidden;
   max-width: 272px;
-  max-height: 345px;
+  max-height: 380px;
   margin: 10px auto;
+  background-size: cover;
+  background-position: center;
 }
 
 .box.is-padded {

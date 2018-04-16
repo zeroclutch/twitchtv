@@ -48,7 +48,6 @@ app.get("/topStreams", function (request, response) {
   const options = {game: request.query.game, language: "en"};
   twitch.getTopStreams(options)
     .then(data => {
-    console.log(data.channel)
         var topStreams = {
           total: data.total,
           streams: []
@@ -64,7 +63,7 @@ app.get("/topStreams", function (request, response) {
       })
     }
         //console.log(data)
-        response.send(data)
+        response.send(topStreams)
     })
     .catch(error => {
         console.error(error);
