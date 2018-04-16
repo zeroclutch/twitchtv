@@ -33,12 +33,12 @@
             Find a game
           </h6>
           <br>
-          <!--form-->
-            <input class="input is-wide" type="text" placeholder="Name of Game, (e.g. Fortnite)">
-            <button class="button is-success">
+          <form v-on:keyup.enter="changeGame(currentGame)">
+            <input class="input is-wide" type="text" v-model="currentGame" placeholder="Name of Game, (e.g. Fortnite)">
+            <button v-on:click="changeGame(currentGame)" class="button is-success">
                <i class="fa fa-search"></i> 
             </button>
-          <!--/form-->
+          </form>
         </div>
       </section>
       
