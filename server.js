@@ -46,9 +46,21 @@ app.get("/topGames", function (request, response) {
 
 app.get("/topStreams", function (request, response) {
   const options = {game: request.query.game, language: "en"};
-  console.log(options)
   twitch.getTopStreams(options)
     .then(data => {
+    console.log(data.channel)
+        var topStreams = {
+          total: data.total
+        };
+    for(var i = 0; i < data.streams.length; i++) {
+      const currentStream = data.streams[i];
+      topStreams.streams.push({
+        channel:currentStream.channel,
+        preview:currentStream.preview.box.large,
+        viewers: currentStream.viewers,
+        quality: currentStream.video_height
+      })
+    }
         console.log(data)
         response.send(data)
     })
