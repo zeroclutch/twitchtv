@@ -38,7 +38,7 @@ var Client = {
   }
 }
 
-var Vue;
+var Vue, Twitch
 
 const app = new Vue({
   el: "#app",
@@ -46,15 +46,22 @@ const app = new Vue({
     state: "directory",
     topGames: Client.retrieve("topGames"),
     topStreams: {},
-    currentStream: ""
+    currentStream: "nl_Kripp"
   },
   methods: {
     changeGame: function(game){
       this.topStreams = Client.retrieve("topStreams", {game: game}).streams;
       this.state = "streams"
-    }, changeGame: function(stream){
+    }, watchStream: function(stream){
       this.currentStream = stream;
       this.state = "watching"
+      setTimeout(function(){
+      new Twitch.Embed("twitch-embed", {
+        width: 854,
+        height: 480,
+        channel: this.currentStream
+      });
+      }, 2000);
     }
   }
 });
