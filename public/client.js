@@ -58,10 +58,16 @@ const app = new Vue({
   },
   methods: {
     viewFeatured: function() {
+      //Remove current stream
+      document.getElementById("twitch-embed").innerHTML = "";
+      
       this.featuredStreams = Client.retrieve("featuredStreams", {});
       this.state = "featured"
     },
     changeGame: function(game) {
+      //Remove current stream
+      document.getElementById("twitch-embed").innerHTML = "";
+      
       //Loading button
       const button = document.querySelector(".game-search");
       button.classList.add("is-loading");
