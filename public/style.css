@@ -3,6 +3,13 @@
   padding-top: 5px;
 }
 
+@media screen and (max-width: 500px) {
+  .tw-svg {
+    fill: #6441a4;
+    padding-top: 5px;
+  }
+} 
+
 .section {
   margin: 0 !important;
   padding: 20px;
