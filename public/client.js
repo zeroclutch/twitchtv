@@ -76,32 +76,18 @@ var Vue, Twitch, VueRouter, route;
 route.start(true)
 route.base('#/')
 
-route.parser(function(path) {
-  var raw = path.split('?'),
-      uri = raw[0].split('/'),
-      qs = raw[1],
-      params = {}
-
-  if (qs) {
-    qs.split('&').forEach(function(v) {
-      var c = v.split('=')
-      params[c[0]] = c[1]
-    })
+route(function(target, params) {
+  if (target === "directory") {
+    app.viewDirectory();
+  } else if (target === "featured") {
+    app.viewFeatured();
+  } else if (target === "games") {
+    app.changeGame(params);
+  } else if (target === "channels") {
+    app.watchStream(params);
   }
-  
-  uri.push(params)
-  return uri
 })
 
-route(function(target, action, params) {
-
-  /*
-    target = 'user'
-    action = 'activation'
-    params = { token: 'xyz' }
-  */
-
-})
 
 const app = new Vue({
   el: "#app",
