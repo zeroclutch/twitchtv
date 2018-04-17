@@ -54,7 +54,6 @@ app.get("/topStreams", function (request, response) {
         };
     for(var i = 0; i < data.streams.length; i++) {
       const currentStream = data.streams[i];
-      console.log(currentStream)
       topStreams.streams.push({
         name:currentStream.channel.name,
         title:currentStream.channel.status,
@@ -77,7 +76,6 @@ app.get("/featuredStreams", function (request, response) {
   twitch.getFeaturedStreams(options)
     .then(data => {
         var featuredStreams = [];
-    console.log(data)
     for(var i = 0; i < data.featured.length; i++) {
       const currentStream = data.featured[i].stream;
       featuredStreams.push({
