@@ -111,7 +111,7 @@ const app = new Vue({
       Vue.nextTick(function(){
         document.getElementById("twitch-embed").innerHTML = "";
         new Twitch.Embed("twitch-embed", {
-          width: 1350,
+          width: "100vw",
           height: 780,
           channel: stream
         });
