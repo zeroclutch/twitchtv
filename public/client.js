@@ -70,7 +70,17 @@ var Client = {
   }
 }
 
-var Vue, Twitch, VueRouter;
+var Vue, Twitch, VueRouter, route;
+
+//Setup routing
+route.start()
+route.start(true)
+
+/*route(function(mode, location) {
+  app.state = mode
+  app.currentGame = location
+  app.currentStream = location
+})*/
 
 const app = new Vue({
   el: "#app",
@@ -101,6 +111,7 @@ const app = new Vue({
       this.topStreams = Client.retrieve("topStreams", {game: game}).streams;
       this.currentGame = game;
       this.state = "streams";
+      route(this.currentGame.replace(" ", "-") + "streams")
     }, watchStream: function(stream) {
       //Loading button
       const button = document.querySelector(".stream-search");
