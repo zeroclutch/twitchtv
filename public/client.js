@@ -76,11 +76,32 @@ var Vue, Twitch, VueRouter, route;
 route.start(true)
 route.base('#/')
 
-/*route(function(mode, location) {
-  app.state = mode
-  app.currentGame = location
-  app.currentStream = location
-})*/
+route.parser(function(path) {
+  var raw = path.split('?'),
+      uri = raw[0].split('/'),
+      qs = raw[1],
+      params = {}
+
+  if (qs) {
+    qs.split('&').forEach(function(v) {
+      var c = v.split('=')
+      params[c[0]] = c[1]
+    })
+  }
+  
+  uri.push(params)
+  return uri
+})
+
+route(function(target, action, params) {
+
+  /*
+    target = 'user'
+    action = 'activation'
+    params = { token: 'xyz' }
+  */
+
+})
 
 const app = new Vue({
   el: "#app",
@@ -119,7 +140,7 @@ const app = new Vue({
       this.topStreams = Client.retrieve("topStreams", {game: game}).streams;
       this.currentGame = game;
       this.state = "streams";
-      route(this.currentGame.replace(/\s/g, "-") + "/streams")
+      route("games/" + this.currentGame.replace(/\s/g, "-"))
     }, watchStream: function(stream) {
       //Loading button
       const button = document.querySelector(".stream-search");
@@ -127,6 +148,7 @@ const app = new Vue({
       
       this.currentStream = stream;
       this.state = "watching"
+      route("channels/" + this.currentStream.replace(/\s/g, "-"))
       Vue.nextTick(function(){
         document.getElementById("twitch-embed").innerHTML = "";
         new Twitch.Embed("twitch-embed", {
