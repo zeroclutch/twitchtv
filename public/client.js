@@ -73,8 +73,8 @@ var Client = {
 var Vue, Twitch, VueRouter, route;
 
 //Setup routing
-route.start()
 route.start(true)
+route.base('#/')
 
 /*route(function(mode, location) {
   app.state = mode
@@ -93,12 +93,20 @@ const app = new Vue({
     currentStream: ""
   },
   methods: {
+    viewDirectory: function() {
+      //Remove current stream
+      document.getElementById("twitch-embed").innerHTML = "";
+      this.state = "directory";
+      route("directory")
+    },
     viewFeatured: function() {
       //Remove current stream
       document.getElementById("twitch-embed").innerHTML = "";
       
       this.featuredStreams = Client.retrieve("featuredStreams", {});
       this.state = "featured"
+      
+      route("featured")
     },
     changeGame: function(game) {
       //Remove current stream
@@ -111,7 +119,7 @@ const app = new Vue({
       this.topStreams = Client.retrieve("topStreams", {game: game}).streams;
       this.currentGame = game;
       this.state = "streams";
-      route(this.currentGame.replace(" ", "-") + "streams")
+      route(this.currentGame.replace(/\s/g, "-") + "/streams")
     }, watchStream: function(stream) {
       //Loading button
       const button = document.querySelector(".stream-search");
