@@ -98,6 +98,13 @@ app.get("/featuredStreams", function (request, response) {
 app.get("/search", function (request, response) {
   const options = {mode: request.query.mode, query: request.query.query};
   twitch.searchGames(request.query.query)
+    .then(data => {
+      response.send({data})
+    })
+    .catch(error => {
+        console.error(error);
+        response.send({"error": error})
+    });
 });
 
 // listen for requests :)
