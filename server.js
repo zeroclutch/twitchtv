@@ -95,6 +95,11 @@ app.get("/featuredStreams", function (request, response) {
     })
 });
 
+app.get("/search", function (request, response) {
+  const options = {mode: request.query.mode, query: request.query.query};
+  twitch.searchGames(request.query.query)
+});
+
 // listen for requests :)
 var listener = app.listen(process.env.PORT, function () {
   console.log('Your app is listening on port ' + listener.address().port);
