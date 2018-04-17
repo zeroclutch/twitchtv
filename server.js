@@ -99,7 +99,7 @@ app.get("/search", function (request, response) {
   
   twitch.searchGames(request.query.query)
     .then(data => {
-      console.log(data
+      console.log(data)
       response.send({data})
     })
     .catch(error => {
