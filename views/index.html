@@ -70,6 +70,11 @@
       
       <section v-if="state === 'directory'" class="section columns is-centered">
         <div class="columns column is-10 is-centered is-multiline"> 
+          <div class="column is-12">
+            <h1 class="title is-1 is-left">
+              Directory 
+            </h1>
+          </div>
           <div class="is-3 column column-item " v-for="game in topGames" v-on:click="changeGame(game.name)">
             <div class="box is-collapsed">
               <img v-bind:src="game.image">
