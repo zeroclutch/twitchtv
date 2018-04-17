@@ -96,9 +96,10 @@ app.get("/featuredStreams", function (request, response) {
 });
 
 app.get("/search", function (request, response) {
-  const options = {mode: request.query.mode, query: request.query.query};
+  
   twitch.searchGames(request.query.query)
     .then(data => {
+      console.log(data
       response.send({data})
     })
     .catch(error => {
