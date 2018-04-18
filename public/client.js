@@ -153,13 +153,16 @@ const app = new Vue({
         button.classList.remove('is-loading');
       });
     }, search: function(query) {
-      const input = document.querySelector(".input-game").value;
-      setTimeout(function(){
-        if(input == document.querySelector("input-game").value) {
-          this.gameSearch = Client.retrieve("search", {query});
-        }
-      }, 500);
-      
+      setTimeout(function(){ //Forces vue's next tick, terrible implementation please fix this garbage with nextTick
+      const oldVal = document.querySelector("#input-game").value;
+        setTimeout(function() {
+          const currentVal = document.querySelector("#input-game").value;
+          if(oldVal == currentVal) {
+            //this.gameSearch = Client.retrieve("search", {query});
+            console.log(Client.retrieve("search", {query}))
+          }
+        }, 500);
+      }, 300);
     }
   }
 });
