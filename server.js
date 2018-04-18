@@ -95,6 +95,17 @@ app.get("/featuredStreams", function (request, response) {
     })
 });
 
+app.get("/user", function (request, response) {
+  twitch.getUser(request.query.user)
+  .then(data => {
+    
+  })
+  .catch(error => {
+    console.error(error);
+    response.send({"error": error});
+  });
+});
+
 app.get("/search", function (request, response) {
   twitch.searchGames(request.query.query, true)
     .then(data => {
