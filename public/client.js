@@ -155,9 +155,11 @@ const app = new Vue({
     }, search: function(query) {
       const input = document.querySelector(".input-game").value;
       setTimeout(function(){
-        if
+        if(input == document.querySelector("input-game").value) {
+          this.gameSearch = Client.retrieve("search", {query});
+        }
       }, 500);
-      this.gameSearch = Client.retrieve("search", {query});
+      
     }
   }
 });
