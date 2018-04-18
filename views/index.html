@@ -45,7 +45,7 @@
 					</h6>
 					<br>
 					<div v-on:keyup.enter="changeGame(currentGame)">
-						<input class="input is-wide is-info" v-on:keydown="search(currentGame)" type="text" v-model="currentGame" placeholder="Name of Game, (e.g. Fortnite)">
+						<input class="input input-game is-wide is-info" v-on:keydown="search(currentGame)" type="text" v-model="currentGame" placeholder="Name of Game, (e.g. Fortnite)">
 						<button v-on:click="changeGame(currentGame)" class="button is-info game-search">
                <i class="fa fa-search"></i> 
             </button>

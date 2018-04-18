@@ -153,6 +153,10 @@ const app = new Vue({
         button.classList.remove('is-loading');
       });
     }, search: function(query) {
+      const input = document.querySelector(".input-game").value;
+      setTimeout(function(){
+        if
+      }, 500);
       this.gameSearch = Client.retrieve("search", {query});
     }
   }
