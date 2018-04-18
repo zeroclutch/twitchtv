@@ -103,7 +103,8 @@ const app = new Vue({
     topStreams: {},
     featuredStreams: [],
     currentGame: "",
-    currentStream: ""
+    currentStream: "",
+    gameAutocomplete: {}
   },
   methods: {
     viewDirectory: function() {
@@ -152,7 +153,7 @@ const app = new Vue({
         button.classList.remove('is-loading');
       });
     }, search: function(query) {
-      Client.retrieve("search", {query})
+      console.log(Client.retrieve("search", {query}))
     }
   }
 });

@@ -96,7 +96,7 @@ app.get("/featuredStreams", function (request, response) {
 });
 
 app.get("/search", function (request, response) {
-  twitch.searchGames(request.query.query)
+  twitch.searchGames(request.query.query, true)
     .then(data => {
     if(data.games) {
       var results = [];
