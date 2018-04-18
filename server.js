@@ -96,9 +96,12 @@ app.get("/featuredStreams", function (request, response) {
 });
 
 app.get("/search", function (request, response) {
-  
   twitch.searchGames(request.query.query)
     .then(data => {
+      for(var i = 0; i < data.games.length; i++) {
+        const currentGame = data.games[i];
+        topGames.push({name:currentGame.game.name, image:currentGame.game.box.large, viewers: currentGame.viewers, channels: currentGame.channels})
+      }
       console.log(data)
       response.send({data})
     })

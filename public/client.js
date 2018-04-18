@@ -67,6 +67,12 @@ var Client = {
     callback: function(data) {
       return JSON.parse(data)
     }
+  },
+  search: {
+    endpoint: "/search",
+    callback: function(data) {
+      return JSON.parse(data)
+    }
   }
 }
 
@@ -145,6 +151,8 @@ const app = new Vue({
         const button = document.querySelector(".stream-search");
         button.classList.remove('is-loading');
       });
+    }, search: function(query) {
+      Client.retrieve("search", {query})
     }
   }
 });
