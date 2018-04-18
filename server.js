@@ -100,7 +100,7 @@ app.get("/search", function (request, response) {
     .then(data => {
     if(data.games) {
       var results = [];
-      console.log(data)
+      console.log(data.games[0])
       for(var i = 0; i < data.games.length; i++) {
         const currentGame = data.games[i];
         results.push({name:currentGame.name, logo:currentGame.logo.small})

@@ -167,11 +167,12 @@ const app = new Vue({
           if(oldVal == currentVal) {
               this.gameSearch = Client.retrieve("search", {query});
           }
-        }, 300);
-      }, 200);
+        }, 550);
+      }, 150);
     }, dropdownVisibility: function(name, visible) {
       const dropdown = name == 'game' ? document.querySelector(".game-dropdown") : document.querySelector(".stream-dropdown");
-      
+      if (visible) dropdown.classList.add('is-active');
+      if (!visible) setTimeout( () => dropdown.classList.remove('is-active'), 100);
     }
   }
 });
