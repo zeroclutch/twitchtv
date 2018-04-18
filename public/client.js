@@ -88,7 +88,7 @@ route(function(target, params) {
   } else if (target === "featured") {
     app.viewFeatured();
   } else if (target === "games") {
-    app.changeGame(params.replace(/\-/g, " "));
+    app.changeGame(params.replace(/_/g, " "));
   } else if (target === "channels") {
     app.watchStream(params);
   }
@@ -140,7 +140,7 @@ const app = new Vue({
       this.topStreams = Client.retrieve("topStreams", {game: game}).streams;
       this.currentGame = game;
       this.state = "streams";
-      route("games/" + game.replace(/\s/g, "-"))
+      route("games/" + game.replace(/\s/g, "_"))
     }, watchStream: function(stream) {
       //Loading button
       const button = document.querySelector(".stream-search");
@@ -148,7 +148,7 @@ const app = new Vue({
       
       this.currentStream = stream;
       this.state = "watching"
-      route("channels/" + this.currentStream.replace(/\s/g, "-"))
+      route("channels/" + this.currentStream.replace(/\s/g, "_"))
       Vue.nextTick(function(){
         document.getElementById("twitch-embed").innerHTML = "";
         new Twitch.Embed("twitch-embed", {
@@ -160,7 +160,7 @@ const app = new Vue({
         button.classList.remove('is-loading');
       });
     }, search: function(query) {
-      setTimeout(()=>{ //Forces vue's next tick, terrible implementation please fix this garbage with nextTick
+      Vue.nextTick(()=>{ //Forces vue's next tick, terrible implementation please fix this garbage with nextTick
       const oldVal = document.querySelector("#input-game").value;
         setTimeout(()=>{
           const currentVal = document.querySelector("#input-game").value;
@@ -168,7 +168,7 @@ const app = new Vue({
               this.gameSearch = Client.retrieve("search", {query});
           }
         }, 550);
-      }, 150);
+      });
     }, dropdownVisibility: function(name, visible, fast) {
       const dropdown = name == 'game' ? document.querySelector(".game-dropdown") : document.querySelector(".stream-dropdown");
       if (visible) dropdown.classList.add('is-active');
