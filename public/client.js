@@ -104,6 +104,7 @@ const app = new Vue({
     featuredStreams: [],
     currentGame: "",
     currentStream: "",
+    gameDropdown: false,
     gameSearch: {}
   },
   methods: {
