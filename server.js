@@ -98,12 +98,18 @@ app.get("/featuredStreams", function (request, response) {
 app.get("/search", function (request, response) {
   twitch.searchGames(request.query.query)
     .then(data => {
+    if(data.games) {
+      var results = [];
+      console.log(data)
       for(var i = 0; i < data.games.length; i++) {
         const currentGame = data.games[i];
-        topGames.push({name:currentGame.game.name, image:currentGame.game.box.large, viewers: currentGame.viewers, channels: currentGame.channels})
+        results.push({name:currentGame.name, logo:currentGame.logo.small})
       }
-      console.log(data)
-      response.send({data})
+      console.log(results)
+      response.send({results})
+    } else {
+      response.send({games:[]})
+    }
     })
     .catch(error => {
         console.error(error);
