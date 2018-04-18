@@ -158,11 +158,11 @@ const app = new Vue({
         setTimeout(function() {
           const currentVal = document.querySelector("#input-game").value;
           if(oldVal == currentVal) {
-            //this.gameSearch = Client.retrieve("search", {query});
-            console.log(Client.retrieve("search", {query}))
+              this.gameSearch = Client.retrieve("search", {query});
+              console.log(this.gameSearch)
           }
-        }, 500);
-      }, 300);
+        }, 300);
+      }, 200);
     }
   }
 });
