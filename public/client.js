@@ -88,7 +88,7 @@ route(function(target, params) {
   } else if (target === "featured") {
     app.viewFeatured();
   } else if (target === "games") {
-    app.changeGame(params);
+    app.changeGame(params.replace(/\-/g, " "));
   } else if (target === "channels") {
     app.watchStream(params);
   }
@@ -109,12 +109,18 @@ const app = new Vue({
   },
   methods: {
     viewDirectory: function() {
+      //Clear info
+      this.currentGame = "",
+      this.currentStream = "";
       //Remove current stream
       document.getElementById("twitch-embed").innerHTML = "";
       this.state = "directory";
       route("directory")
     },
     viewFeatured: function() {
+      //Clear info
+      this.currentGame = "",
+      this.currentStream = "";
       //Remove current stream
       document.getElementById("twitch-embed").innerHTML = "";
       
@@ -163,6 +169,9 @@ const app = new Vue({
           }
         }, 300);
       }, 200);
+    }, dropdownVisibility: function(name, visible) {
+      const dropdown = name == 'game' ? document.querySelector(".game-dropdown") : document.querySelector(".stream-dropdown");
+      
     }
   }
 });

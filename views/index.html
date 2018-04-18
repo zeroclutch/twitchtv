@@ -45,16 +45,16 @@
 					</h6>
 					<br>
 					<div v-on:keyup.enter="changeGame(currentGame)">
-						<input class="input is-wide is-info" id="input-game" @focus="gameDropdown = true" @blur="game" v-on:keydown="search(currentGame)" type="text" v-model="currentGame" placeholder="Name of Game, (e.g. Fortnite)">
+						<input class="input is-wide is-info" id="input-game" @focus="dropdownVisibility('game',true)" @blur="dropdownVisibility('game',false)" v-on:keydown="search(currentGame)" type="text" v-model="currentGame" placeholder="Name of Game, (e.g. Fortnite)">
 						<button v-on:click="changeGame(currentGame)" class="button is-info game-search">
                <i class="fa fa-search"></i> 
             </button>
-						<div v-show="gameDropdown" class="dropdown is-active is-wide">
+						<div class="dropdown game-dropdown is-active is-wide">
 							<div class="dropdown-trigger">
 							</div>
 							<div class="dropdown-menu" id="dropdown-menu" role="menu">
 								<div class="dropdown-content">
-									<a v-on:click="changeGame(game.name)" v-for="game in gameSearch.results" class="dropdown-item">
+									<a v-on:click="changeGame(game.name)" @click="gameDropdown = true" v-for="game in gameSearch.results" class="dropdown-item">
                   {{ game.name }}
                 </a>
 								</div>
