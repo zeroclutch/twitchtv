@@ -54,7 +54,7 @@
 							</div>
 							<div class="dropdown-menu" id="dropdown-menu" role="menu">
 								<div class="dropdown-content">
-									<a v-on:click="changeGame(game.name)" @click="gameDropdown = true" v-for="game in gameSearch.results" class="dropdown-item">
+									<a v-on:click="changeGame(game.name)" v-for="game in gameSearch.results" class="dropdown-item">
                   {{ game.name }}
                 </a>
 								</div>
