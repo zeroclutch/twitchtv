@@ -169,10 +169,11 @@ const app = new Vue({
           }
         }, 550);
       }, 150);
-    }, dropdownVisibility: function(name, visible) {
+    }, dropdownVisibility: function(name, visible, fast) {
       const dropdown = name == 'game' ? document.querySelector(".game-dropdown") : document.querySelector(".stream-dropdown");
       if (visible) dropdown.classList.add('is-active');
-      if (!visible) setTimeout( () => dropdown.classList.remove('is-active'), 100);
+      if (!visible && !fast) setTimeout( () => dropdown.classList.remove('is-active'), 1000);
+      if (!visible && fast) dropdown.classList.remove('is-active');
     }
   }
 });

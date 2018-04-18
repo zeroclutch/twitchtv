@@ -16,6 +16,7 @@
 
 <body>
 	<div id="app">
+    <div class="wrap">
 		<a role="button" class="navbar-burger has-text-success" data-target="navMenu" aria-label="menu" aria-expanded="false">
         <span aria-hidden="true"></span>
         <span aria-hidden="true"></span>
@@ -38,7 +39,7 @@
 		</nav>
 
 		<section class="search-group">
-			<section class="section columns is-centered">
+			<section class="section columns is-centered" @click="dropdownVisibility('game',true, true)">
 				<div class="column is-4 box is-padded">
 					<h6 class="title is-4">
 						<i class="fa fa-gamepad fa-3x has-text-info"></i><br> Find a game
@@ -86,7 +87,7 @@
 
 		<hr>
 
-		<section v-if="state === 'directory'" class="section columns is-centered">
+		<section v-if="state === 'directory'" class="section columns is-centered" @click="dropdownVisibility('game',true, true)">
 			<div class="columns column is-10 is-centered is-multiline">
 				<div class="column is-12">
 					<h1 class="title is-1 is-left">
@@ -110,7 +111,7 @@
 			</div>
 		</section>
 
-		<section v-if="state === 'featured'" class="section columns is-centered">
+		<section v-if="state === 'featured'" class="section columns is-centered" @click="dropdownVisibility('game',true, true)">
 			<div class="columns column is-10 is-centered is-multiline">
 				<div class="is-4 column column-item " v-for="stream in featuredStreams" v-on:click="watchStream(stream.name)">
 					<div class="box is-collapsed-stream">
@@ -124,7 +125,7 @@
 			</div>
 		</section>
 
-		<section v-if="state === 'streams'" class="section columns is-centered">
+		<section v-if="state === 'streams'" class="section columns is-centered" @click="dropdownVisibility('game',true, true)">
 			<div class="columns column is-10 is-centered is-multiline">
 				<div class="is-4 column column-item " v-for="stream in topStreams" v-on:click="watchStream(stream.name)">
 					<div class="box is-collapsed-stream">
@@ -144,7 +145,7 @@
 			<div v-show="state === 'watching'">
 			</div>
 		</section>
-
+    </div>
 	</div>
 	<!-- import the webpage's client-side javascript file -->
 	<script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
