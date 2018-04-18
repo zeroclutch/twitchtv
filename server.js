@@ -98,7 +98,8 @@ app.get("/featuredStreams", function (request, response) {
 app.get("/user", function (request, response) {
   twitch.getUser(request.query.user)
   .then(data => {
-    
+    console.log(data)
+    response.send({data})
   })
   .catch(error => {
     console.error(error);
