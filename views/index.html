@@ -1,171 +1,157 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <title>Not Twitch TV</title>
-    <meta name="description" content="View Twitch streams anywhere">
-    <link id="favicon" rel="icon" href="https://cdn.glitch.com/efe6e070-2c1d-436d-9464-ff6641eae224%2Ftwitchsmall.png?1523871779903" type="image/x-icon">
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    
-    <script defer src="https://use.fontawesome.com/releases/v5.0.7/js/all.js"></script>
-    <link rel="stylesheet" href="bulma.css">
-    <link rel="stylesheet" href="style.css">
-  </head>
-  <body>
-    <div id="app">
-      <a role="button" class="navbar-burger has-text-success" data-target="navMenu" aria-label="menu" aria-expanded="false">
+
+<head>
+	<title>Not Twitch TV</title>
+	<meta name="description" content="View Twitch streams anywhere">
+	<link id="favicon" rel="icon" href="https://cdn.glitch.com/efe6e070-2c1d-436d-9464-ff6641eae224%2Ftwitchsmall.png?1523871779903" type="image/x-icon">
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<script defer src="https://use.fontawesome.com/releases/v5.0.7/js/all.js"></script>
+	<link rel="stylesheet" href="bulma.css">
+	<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+	<div id="app">
+		<a role="button" class="navbar-burger has-text-success" data-target="navMenu" aria-label="menu" aria-expanded="false">
         <span aria-hidden="true"></span>
         <span aria-hidden="true"></span>
         <span aria-hidden="true"></span>
       </a>
-      <nav class="navbar-menu navbar is-success is-fixed-top has-text-white" id="navMenu" role="navigation" aria-label="main navigation">
-        <div class="navbar-start">
-          <div class="navbar-brand">
-            <a class="navbar-item" href="/">
-              <figure class="tw-svg"><svg class="tw-svg__asset tw-svg__asset--logotwitch tw-svg__asset--inherit" width="94px" height="32px" version="1.1" viewbox="0 0 94 32" x="0px" y="0px"><path clip-rule="evenodd" d="M88,5h-6V0h-9l-6,5h-5.5L59,7.5V5h-5V0H36v5H16l-5-5H0v22l5,5.25L14,32h6v-1.5l3,1.5h12l2-3l1,3h7v-3l3,3h8l0.5-3l2.5,3h10l3-3v3h4l3-3v3h7l7-6V10L88,5z M13,13H8v6h5v6H6l-4-4V2h6v5h5V13z M36,21.5L32.5,25H15V7h6v12h2V7h6v12h2V7h5V21.5z M44,25h-6V7h6V25z M44,5h-6V2h6V5z M57,13h-5v6h5v6h-7l-4-4V2h6v5h5V13z M72,13h-7v6h7v6h-9l-4-4V11l4-4h9V13z M91,25h-6V13h-5v12h-6V2h6v5h7l4,4V25z" fill-rule="evenodd"></path></svg></figure>
-            </a>
-          </div>
-          <a class="navbar-item has-text-white" v-on:click="viewDirectory()">
+		<nav class="navbar-menu navbar is-success is-fixed-top has-text-white" id="navMenu" role="navigation" aria-label="main navigation">
+			<div class="navbar-start">
+				<div class="navbar-brand">
+					<a class="navbar-item" href="/">
+						<figure class="tw-svg"><svg class="tw-svg__asset tw-svg__asset--logotwitch tw-svg__asset--inherit" width="94px" height="32px" version="1.1" viewbox="0 0 94 32" x="0px" y="0px"><path clip-rule="evenodd" d="M88,5h-6V0h-9l-6,5h-5.5L59,7.5V5h-5V0H36v5H16l-5-5H0v22l5,5.25L14,32h6v-1.5l3,1.5h12l2-3l1,3h7v-3l3,3h8l0.5-3l2.5,3h10l3-3v3h4l3-3v3h7l7-6V10L88,5z M13,13H8v6h5v6H6l-4-4V2h6v5h5V13z M36,21.5L32.5,25H15V7h6v12h2V7h6v12h2V7h5V21.5z M44,25h-6V7h6V25z M44,5h-6V2h6V5z M57,13h-5v6h5v6h-7l-4-4V2h6v5h5V13z M72,13h-7v6h7v6h-9l-4-4V11l4-4h9V13z M91,25h-6V13h-5v12h-6V2h6v5h7l4,4V25z" fill-rule="evenodd"></path></svg></figure>
+					</a>
+				</div>
+				<a class="navbar-item has-text-white" v-on:click="viewDirectory()">
             Directory
           </a>
-          <a class="navbar-item has-text-white" v-on:click="viewFeatured()">
+				<a class="navbar-item has-text-white" v-on:click="viewFeatured()">
             Featured
           </a>
-        </div>
-      </nav>
-      
-      <section class="search-group">
-      <section class="section columns is-centered">
-        <div class="column is-4 box is-padded">
-          <h6 class="title is-4">
-            <i class="fa fa-gamepad fa-3x has-text-info"></i><br>
-            Find a game 
-          </h6>
-          <br>
-          <div v-on:keyup.enter="changeGame(currentGame)">
-            <input class="input is-wide is-info" v-on:keydown="search(currentGame)" type="text" v-model="currentGame" placeholder="Name of Game, (e.g. Fortnite)">
-            <button v-on:click="changeGame(currentGame)" class="button is-info game-search">
+			</div>
+		</nav>
+
+		<section class="search-group">
+			<section class="section columns is-centered">
+				<div class="column is-4 box is-padded">
+					<h6 class="title is-4">
+						<i class="fa fa-gamepad fa-3x has-text-info"></i><br> Find a game
+					</h6>
+					<br>
+					<div v-on:keyup.enter="changeGame(currentGame)">
+						<input class="input is-wide is-info" v-on:keydown="search(currentGame)" type="text" v-model="currentGame" placeholder="Name of Game, (e.g. Fortnite)">
+						<button v-on:click="changeGame(currentGame)" class="button is-info game-search">
                <i class="fa fa-search"></i> 
             </button>
-            <div class="dropdown is-active">
-            <div class="dropdown-trigger">
-            </div>
-            <div class="dropdown-menu" id="dropdown-menu" role="menu">
-              <div class="dropdown-content">
-                <a href="#" class="dropdown-item">
-                  Dropdown item
+						<div class="dropdown is-active is-wide">
+							<div class="dropdown-trigger">
+							</div>
+							<div class="dropdown-menu" id="dropdown-menu" role="menu">
+								<div class="dropdown-content">
+									<a v-on:click="changeGame(game.name)" v-for="game in gameSearch.results" class="dropdown-item">
+                  {{ game.name }}
                 </a>
-                <a class="dropdown-item">
-                  Other dropdown item
-                </a>
-                <a href="#" class="dropdown-item is-active">
-                  Active dropdown item
-                </a>
-                <a href="#" class="dropdown-item">
-                  Other dropdown item
-                </a>
-                <hr class="dropdown-divider">
-                <a href="#" class="dropdown-item">
-                  With a divider
-                </a>
-              </div>
-            </div>
-          </div>
-          </div>
-        </div>
-        
-        <div class="columns">
-          <div class="column"></div>
-          <div class="is-divider-vertical" data-content="OR"></div>
-          <div class="column"></div>
-        </div>
-        
-        <div class="column is-4 box is-padded">
-          <h6 class="title is-4">
-            <i class="fa fa-video fa-3x has-text-primary"></i><br>
-            Find a stream 
-          </h6>
-          <br>
-          <div v-on:keyup.enter="watchStream(currentStream)">
-            <input class="input is-wide is-primary" type="text" v-model="currentStream" placeholder="Name of Streamer, (e.g. eleaguetv)">
-            <button v-on:click="watchStream(currentStream)" class="button is-primary stream-search">
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="columns">
+					<div class="column"></div>
+					<div class="is-divider-vertical" data-content="OR"></div>
+					<div class="column"></div>
+				</div>
+
+				<div class="column is-4 box is-padded">
+					<h6 class="title is-4">
+						<i class="fa fa-video fa-3x has-text-primary"></i><br> Find a stream
+					</h6>
+					<br>
+					<div v-on:keyup.enter="watchStream(currentStream)">
+						<input class="input is-wide is-primary" type="text" v-model="currentStream" placeholder="Name of Streamer, (e.g. eleaguetv)">
+						<button v-on:click="watchStream(currentStream)" class="button is-primary stream-search">
                <i class="fa fa-search"></i> 
             </button>
-          </div>
-        </div>
-      </section>
-      </section>
-      
-      <hr>
-      
-      <section v-if="state === 'directory'" class="section columns is-centered">
-        <div class="columns column is-10 is-centered is-multiline"> 
-          <div class="column is-12">
-            <h1 class="title is-1 is-left">
-              Directory 
-            </h1>
-          </div>
-          <div class="is-3 column column-item " v-for="game in topGames" v-on:click="changeGame(game.name)">
-            <div class="box is-collapsed">
-              <img v-bind:src="game.image">
-            </div>
-            <div class="caption">
-              <b>{{ game.name || "Loading" }}</b><br>
-              <span class="has-text-success">
+					</div>
+				</div>
+			</section>
+		</section>
+
+		<hr>
+
+		<section v-if="state === 'directory'" class="section columns is-centered">
+			<div class="columns column is-10 is-centered is-multiline">
+				<div class="column is-12">
+					<h1 class="title is-1 is-left">
+						Directory
+					</h1>
+				</div>
+				<div class="is-3 column column-item " v-for="game in topGames" v-on:click="changeGame(game.name)">
+					<div class="box is-collapsed">
+						<img v-bind:src="game.image">
+					</div>
+					<div class="caption">
+						<b>{{ game.name || "Loading" }}</b><br>
+						<span class="has-text-success">
               {{ game.channels || "Loading" }}
                 <i class="fas fa-video"></i>
               </span>
-              <br>
-              <span class="has-text-danger">{{ game.viewers || "Loading" }} <i class="fa fa-eye"></i></span> <br>
-            </div>
-          </div>
-        </div>
-      </section>
-      
-      <section v-if="state === 'featured'" class="section columns is-centered">
-        <div class="columns column is-10 is-centered is-multiline"> 
-          <div class="is-4 column column-item " v-for="stream in featuredStreams" v-on:click="watchStream(stream.name)">
-            <div class="box is-collapsed-stream">
-              <img v-bind:src="stream.preview || 'https://cdn.glitch.com/efe6e070-2c1d-436d-9464-ff6641eae224%2Ftwitchbg.jpg?1523863178418'">
-            </div>
-            <div class="caption">
-              <b>{{ stream.name || "Loading" }}</b><br>
-              {{ stream.title || "Loading" }}<br>
-              <span class="has-text-danger">{{ stream.viewers || "Loading" }} <i class="fa fa-eye"></i></span> <br>
-            </div>
-          </div>
-        </div>
-      </section>
-      
-      <section v-if="state === 'streams'" class="section columns is-centered">
-        <div class="columns column is-10 is-centered is-multiline"> 
-          <div class="is-4 column column-item " v-for="stream in topStreams" v-on:click="watchStream(stream.name)">
-            <div class="box is-collapsed-stream">
-              <img v-bind:src="stream.preview || 'https://cdn.glitch.com/efe6e070-2c1d-436d-9464-ff6641eae224%2Ftwitchbg.jpg?1523863178418'">
-            </div>
-            <div class="caption">
-              <b>{{ stream.name || "Loading" }}</b><br>
-              {{ stream.title || "Loading" }}<br>
-              <span class="has-text-danger">{{ stream.viewers || "Loading" }} <i class="fa fa-eye"></i></span> <br>
-            </div>
-          </div>
-        </div>
-      </section>
-      
-      <section class="section columns is-centered">
-          <!-- Add a placeholder for the Twitch embed -->
-          <div class="column is-12" id="twitch-embed" v-show="state === 'watching'"></div>
-        <div v-show="state === 'watching'">
-        </div>
-      </section>
-      
-    </div>
-    <!-- import the webpage's client-side javascript file -->
-    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/riot-route@3.0.0/dist/route.min.js"></script>
-    <!-- Load the Twitch embed script -->
-    <script src="https://embed.twitch.tv/embed/v1.js"></script>
-    <script src="client.js"></script>
-  </body>
+						<br>
+						<span class="has-text-danger">{{ game.viewers || "Loading" }} <i class="fa fa-eye"></i></span> <br>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<section v-if="state === 'featured'" class="section columns is-centered">
+			<div class="columns column is-10 is-centered is-multiline">
+				<div class="is-4 column column-item " v-for="stream in featuredStreams" v-on:click="watchStream(stream.name)">
+					<div class="box is-collapsed-stream">
+						<img v-bind:src="stream.preview || 'https://cdn.glitch.com/efe6e070-2c1d-436d-9464-ff6641eae224%2Ftwitchbg.jpg?1523863178418'">
+					</div>
+					<div class="caption">
+						<b>{{ stream.name || "Loading" }}</b><br> {{ stream.title || "Loading" }}<br>
+						<span class="has-text-danger">{{ stream.viewers || "Loading" }} <i class="fa fa-eye"></i></span> <br>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<section v-if="state === 'streams'" class="section columns is-centered">
+			<div class="columns column is-10 is-centered is-multiline">
+				<div class="is-4 column column-item " v-for="stream in topStreams" v-on:click="watchStream(stream.name)">
+					<div class="box is-collapsed-stream">
+						<img v-bind:src="stream.preview || 'https://cdn.glitch.com/efe6e070-2c1d-436d-9464-ff6641eae224%2Ftwitchbg.jpg?1523863178418'">
+					</div>
+					<div class="caption">
+						<b>{{ stream.name || "Loading" }}</b><br> {{ stream.title || "Loading" }}<br>
+						<span class="has-text-danger">{{ stream.viewers || "Loading" }} <i class="fa fa-eye"></i></span> <br>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<section class="section columns is-centered">
+			<!-- Add a placeholder for the Twitch embed -->
+			<div class="column is-12" id="twitch-embed" v-show="state === 'watching'"></div>
+			<div v-show="state === 'watching'">
+			</div>
+		</section>
+
+	</div>
+	<!-- import the webpage's client-side javascript file -->
+	<script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/riot-route@3.0.0/dist/route.min.js"></script>
+	<!-- Load the Twitch embed script -->
+	<script src="https://embed.twitch.tv/embed/v1.js"></script>
+	<script src="client.js"></script>
+</body>
+
 </html>

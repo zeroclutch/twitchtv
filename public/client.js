@@ -104,7 +104,7 @@ const app = new Vue({
     featuredStreams: [],
     currentGame: "",
     currentStream: "",
-    gameAutocomplete: {}
+    gameSearch: {}
   },
   methods: {
     viewDirectory: function() {
@@ -133,7 +133,7 @@ const app = new Vue({
       this.topStreams = Client.retrieve("topStreams", {game: game}).streams;
       this.currentGame = game;
       this.state = "streams";
-      route("games/" + this.currentGame.replace(/\s/g, "-"))
+      route("games/" + game.replace(/\s/g, "-"))
     }, watchStream: function(stream) {
       //Loading button
       const button = document.querySelector(".stream-search");
@@ -153,7 +153,7 @@ const app = new Vue({
         button.classList.remove('is-loading');
       });
     }, search: function(query) {
-      console.log(Client.retrieve("search", {query}))
+      this.gameSearch = Client.retrieve("search", {query});
     }
   }
 });
