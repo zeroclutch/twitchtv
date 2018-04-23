@@ -98,8 +98,7 @@ app.get("/featuredStreams", function (request, response) {
 app.get("/user", function (request, response) {
   twitch.getUser(request.query.user)
   .then(data => {
-    console.log(data)
-    response.send({data})
+    response.send({viewers:data.stream.views, lifetimeViews:data.channel.views, game: data.channel.views})
   })
   .catch(error => {
     console.error(error);
