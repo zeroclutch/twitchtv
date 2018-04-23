@@ -17,7 +17,7 @@ function refreshTopGames() {
     topGames = [];
     for(var i = 0; i < data.top.length; i++) {
       const currentGame = data.top[i];
-      topGames.push({name:currentGame.game.name, image:currentGame.game.box.large, viewers: currentGame.viewers, channels: currentGame.channels})
+      topGames.push({title: data.stream.channel.status, name:currentGame.game.name, image:currentGame.game.box.large, viewers: currentGame.viewers, channels: currentGame.channels})
     }
   })
   .catch(error => {

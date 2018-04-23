@@ -149,11 +149,13 @@
         <div class="is-stream-title-holder">
         <h4 class="title is-4 is-stream-title">
            {{ streamData.name || currentStream }} | Playing {{ streamData.game || "nothing" }}
-          <span class="tag is-danger">{{streamData.viewers}} viewers</span>
-          <span class="tag is-gray">{{streamData.lifetimeViews}} lifetime views</span>
+          <span class="tag-group" v-show="streamData.viewers">
+            <span class="tag is-danger">{{ streamData.viewers }} viewers</span>
+            <span class="tag is-gray">{{ streamData.lifetimeViews }} lifetime views</span>
+          </span>
         </h4>
           <br>
-        <h6 class="title is-6 is-stream-title">Hello</h6>
+        <h6 class="title is-6 is-stream-title">{{ streamData.title || "User is currently offline" }}</h6>
       </div>
       </div>
       
