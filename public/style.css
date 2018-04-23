@@ -64,10 +64,15 @@
   display: inline-block;
 }
 
-.title.is-stream-title {
+.is-stream-title-holder {
   position: relative;
-  top: -40px;
+  top: -8px;
+  padding-left: 10px;
   display: inline-block;
+}
+
+.is-stream-title {
+  display: inline;
 }
 
 .box.is-padded {
