@@ -140,13 +140,13 @@
 			</div>
 		</section>
 
-		<section class="section columns is-centered" v-show="state === 'watching'">
-      <div class="column is-12 is-multiline">
+		<section class="section columns is-centered is-multiline" v-show="state === 'watching'">
+      <div class="column is-12">
         <div class="box is-collapsed-icon">
           <img v-bind:src="streamData.avatar || 'https://cdn.glitch.com/efe6e070-2c1d-436d-9464-ff6641eae224%2Ftwitchbg.jpg?1523863178418'">
         </div>
-        <h4 class="title is-4">
-          {{ streamData.name }}
+        <h4 class="title is-4 is-stream-title">
+           {{ streamData.name }} | {{ streamData.title }} <span class="tag is-danger">{{ streamData.viewers }} views</span>
         </h4>
       </div>
       

@@ -61,10 +61,14 @@
   margin: 10px auto;
   background-size: cover;
   background-position: center;
-  display: inline-block
+  display: inline-block;
 }
 
-.title.is-icon
+.title.is-stream-title {
+  position: relative;
+  top: -25px;
+  display: inline-block;
+}
 
 .box.is-padded {
   padding: 30px;
