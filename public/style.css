@@ -53,6 +53,19 @@
   background-position: center;
 }
 
+.box.is-collapsed-icon {
+  padding: 0 !important;
+  overflow: hidden;
+  max-width: 50px;
+  max-height: 50px;
+  margin: 10px auto;
+  background-size: cover;
+  background-position: center;
+  display: inline-block
+}
+
+.title.is-icon
+
 .box.is-padded {
   padding: 30px;
   margin: 20px;

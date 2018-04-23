@@ -98,7 +98,7 @@ app.get("/featuredStreams", function (request, response) {
 app.get("/user", function (request, response) {
   twitch.getUser(request.query.user)
   .then(data => {
-    response.send({name:data, viewers:data.stream.viewers, lifetimeViews:data.stream.channel.views, game: data.stream.channel.game, avatar: data.stream.channel.logo})
+    response.send({name:data.stream.channel.display_name, viewers:data.stream.viewers, lifetimeViews:data.stream.channel.views, game: data.stream.channel.game, avatar: data.stream.channel.logo})
   })
   .catch(error => {
     console.error(error);

@@ -152,7 +152,7 @@ const app = new Vue({
       //Loading button
       const button = document.querySelector(".stream-search");
       button.classList.add("is-loading");
-      this.streamData = Client.retrieve("topStreams", {user: stream}).streams;
+      this.streamData = Client.retrieve("user", {user: stream});
       
       this.currentStream = stream;
       this.state = "watching"

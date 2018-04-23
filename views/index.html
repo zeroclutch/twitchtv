@@ -141,9 +141,15 @@
 		</section>
 
 		<section class="section columns is-centered" v-show="state === 'watching'">
-      <h1 class="title is-1">
-        {{ streamData.title }}
-      </h1>
+      <div class="column is-12 is-multiline">
+        <div class="box is-collapsed-icon">
+          <img v-bind:src="streamData.avatar || 'https://cdn.glitch.com/efe6e070-2c1d-436d-9464-ff6641eae224%2Ftwitchbg.jpg?1523863178418'">
+        </div>
+        <h4 class="title is-4">
+          {{ streamData.name }}
+        </h4>
+      </div>
+      
 			<!-- Add a placeholder for the Twitch embed -->
 			<div class="column is-12" id="twitch-embed"></div>
 			<div>
