@@ -106,7 +106,8 @@
                 <i class="fas fa-video"></i>
               </span>
 						<br>
-						<span class="has-text-danger">{{ game.viewers || "Loading" }} <i class="fa fa-eye"></i></span> <br>
+						<span class="has-text-danger">{{ game.viewers || "Loading" }} <i class="fa fa-eye"></i></span>
+            <br>
 					</div>
 				</div>
 			</div>
@@ -146,7 +147,11 @@
           <img v-bind:src="streamData.avatar || 'https://cdn.glitch.com/efe6e070-2c1d-436d-9464-ff6641eae224%2Ftwitchbg.jpg?1523863178418'">
         </div>
         <h4 class="title is-4 is-stream-title">
-           {{ streamData.name }} | Playing {{ streamData.game }} <span class="tag is-danger">{{streamData.viewers}} viewers</span>
+           {{ streamData.name }} | Playing {{ streamData.game }}
+          <span class="tag is-danger">{{streamData.viewers}} viewers</span>
+          <span class="tag is-gray">{{streamData.lifetimeViews}} lifetime views</span>
+          <br><br>
+          <h6 class="title is-6 is-stream-title">Hello</h6>
         </h4>
       </div>
       
