@@ -17,7 +17,7 @@ function refreshTopGames() {
     topGames = [];
     for(var i = 0; i < data.top.length; i++) {
       const currentGame = data.top[i];
-      topGames.push({title: data.stream.channel.status, name:currentGame.game.name, image:currentGame.game.box.large, viewers: currentGame.viewers, channels: currentGame.channels})
+      topGames.push({name:currentGame.game.name, image:currentGame.game.box.large, viewers: currentGame.viewers, channels: currentGame.channels})
     }
   })
   .catch(error => {
@@ -98,7 +98,7 @@ app.get("/featuredStreams", function (request, response) {
 app.get("/user", function (request, response) {
   twitch.getUser(request.query.user)
   .then(data => {
-    response.send({data,name:data.stream.channel.display_name, viewers:data.stream.viewers, lifetimeViews:data.stream.channel.views, game: data.stream.channel.game, avatar: data.stream.channel.logo})
+    response.send({title: data.stream.channel.status, name:data.stream.channel.display_name, viewers:data.stream.viewers, lifetimeViews:data.stream.channel.views, game: data.stream.channel.game, avatar: data.stream.channel.logo})
   })
   .catch(error => {
     console.error(error);
