@@ -68,6 +68,12 @@ var Client = {
       return JSON.parse(data)
     }
   },
+  user: {
+    endpoint: "/user",
+    callback: function(data) {
+      return JSON.parse(data)
+    }
+  },
   search: {
     endpoint: "/search",
     callback: function(data) {
@@ -104,6 +110,7 @@ const app = new Vue({
     featuredStreams: [],
     currentGame: "",
     currentStream: "",
+    streamData: {},
     gameDropdown: false,
     gameSearch: {}
   },
@@ -145,6 +152,7 @@ const app = new Vue({
       //Loading button
       const button = document.querySelector(".stream-search");
       button.classList.add("is-loading");
+      this.streamData = Client.retrieve("topStreams", {user: stream}).streams;
       
       this.currentStream = stream;
       this.state = "watching"
