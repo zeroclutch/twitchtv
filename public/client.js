@@ -90,13 +90,13 @@ route.base('#/')
 
 route(function(target, params) {
   if (target === "directory") {
-    app.viewDirectory();
+    app.viewDirectory(true);
   } else if (target === "featured") {
-    app.viewFeatured();
+    app.viewFeatured(true);
   } else if (target === "games") {
-    app.changeGame(params.replace(/_/g, " "));
+    app.changeGame(params.replace(/_/g, " "), true);
   } else if (target === "channels") {
-    app.watchStream(params);
+    app.watchStream(params, true);
   }
 })
 
@@ -114,16 +114,16 @@ const app = new Vue({
     gameSearch: {}
   },
   methods: {
-    viewDirectory: function() {
+    viewDirectory: function(noRoute) {
       //Clear info
       this.currentGame = "",
       this.currentStream = "";
       //Remove current stream
       document.getElementById("twitch-embed").innerHTML = "";
       this.state = "directory";
-      route("directory", 'Directory | Not Twitch TV', true)
+      if(!noRoute) route("directory", 'Directory | Not Twitch TV');
     },
-    viewFeatured: function() {
+    viewFeatured: function(noRoute) {
       //Clear info
       this.currentGame = "",
       this.currentStream = "";
@@ -133,9 +133,9 @@ const app = new Vue({
       this.featuredStreams = Client.retrieve("featuredStreams", {});
       this.state = "featured"
       
-      route("featured", 'Featured | Not Twitch TV')
+      if(!noRoute) route("featured", 'Featured | Not Twitch TV');
     },
-    changeGame: function(game) {
+    changeGame: function(game, noRoute) {
       //Remove current stream
       document.getElementById("twitch-embed").innerHTML = "";
       
@@ -146,8 +146,8 @@ const app = new Vue({
       this.topStreams = Client.retrieve("topStreams", {game: game}).streams;
       this.currentGame = game;
       this.state = "streams";
-      route("games/" + game.replace(/\s/g, "_"), game.replace(/\s/g, "_") + ' | Not Twitch TV')
-    }, watchStream: function(stream) {
+      if(!noRoute) route("games/" + game.replace(/\s/g, "_"), game.replace(/\s/g, "_") + ' | Not Twitch TV');
+    }, watchStream: function(stream, noRoute) {
       //Loading button
       const button = document.querySelector(".stream-search");
       button.classList.add("is-loading");
@@ -155,7 +155,7 @@ const app = new Vue({
       
       this.currentStream = stream;
       this.state = "watching"
-      route("channels/" + this.currentStream.replace(/\s/g, "_"), this.currentStream.replace(/\s/g, "_") + ' | Not Twitch TV')
+      if(!noRoute) route("channels/" + this.currentStream.replace(/\s/g, "_"), this.currentStream.replace(/\s/g, "_") + ' | Not Twitch TV');
       Vue.nextTick(function(){
         document.getElementById("twitch-embed").innerHTML = "";
         new Twitch.Embed("twitch-embed", {
@@ -166,6 +166,8 @@ const app = new Vue({
         const button = document.querySelector(".stream-search");
         button.classList.remove('is-loading');
       });
+    }, hideTitle: function(toggle) {
+      document.title = "New Tab";
     }, search: function(query) {
       Vue.nextTick(()=>{
       const oldVal = document.querySelector("#input-game").value;
