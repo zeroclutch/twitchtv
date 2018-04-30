@@ -100,7 +100,6 @@ route(function(target, params) {
   }
 })
 
-
 const app = new Vue({
   el: "#app",
   data: {
@@ -122,7 +121,7 @@ const app = new Vue({
       //Remove current stream
       document.getElementById("twitch-embed").innerHTML = "";
       this.state = "directory";
-      route("directory")
+      route("directory", 'Directory | Not Twitch TV', true)
     },
     viewFeatured: function() {
       //Clear info
@@ -134,7 +133,7 @@ const app = new Vue({
       this.featuredStreams = Client.retrieve("featuredStreams", {});
       this.state = "featured"
       
-      route("featured")
+      route("featured", 'Featured | Not Twitch TV')
     },
     changeGame: function(game) {
       //Remove current stream
@@ -147,7 +146,7 @@ const app = new Vue({
       this.topStreams = Client.retrieve("topStreams", {game: game}).streams;
       this.currentGame = game;
       this.state = "streams";
-      route("games/" + game.replace(/\s/g, "_"))
+      route("games/" + game.replace(/\s/g, "_"), game.replace(/\s/g, "_") + ' | Not Twitch TV')
     }, watchStream: function(stream) {
       //Loading button
       const button = document.querySelector(".stream-search");
@@ -156,7 +155,7 @@ const app = new Vue({
       
       this.currentStream = stream;
       this.state = "watching"
-      route("channels/" + this.currentStream.replace(/\s/g, "_"))
+      route("channels/" + this.currentStream.replace(/\s/g, "_"), this.currentStream.replace(/\s/g, "_") + ' | Not Twitch TV')
       Vue.nextTick(function(){
         document.getElementById("twitch-embed").innerHTML = "";
         new Twitch.Embed("twitch-embed", {
@@ -168,7 +167,7 @@ const app = new Vue({
         button.classList.remove('is-loading');
       });
     }, search: function(query) {
-      Vue.nextTick(()=>{ //Forces vue's next tick, terrible implementation please fix this garbage with nextTick
+      Vue.nextTick(()=>{
       const oldVal = document.querySelector("#input-game").value;
         setTimeout(()=>{
           const currentVal = document.querySelector("#input-game").value;
