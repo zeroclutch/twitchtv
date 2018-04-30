@@ -148,7 +148,7 @@ const app = new Vue({
       this.state = "streams";
       if(!noRoute) route("games/" + game.replace(/\s/g, "_"), game.replace(/\s/g, "_") + ' | Not Twitch TV');
     }, watchStream: function(stream, noRoute) {
-      //Loading button
+      //Set view to show the stream
       const button = document.querySelector(".stream-search");
       button.classList.add("is-loading");
       this.streamData = Client.retrieve("user", {user: stream});
@@ -167,7 +167,13 @@ const app = new Vue({
         button.classList.remove('is-loading');
       });
     }, hideTitle: function(toggle) {
+      //Hides tab info
       document.title = "New Tab";
+      var link = document.querySelector("link[rel*='icon']") || document.createElement('link');
+      link.type = 'image/x-icon';
+      link.rel = 'icon';
+      link.href = 'error404';
+      document.getElementsByTagName('head')[0].appendChild(link);
     }, search: function(query) {
       Vue.nextTick(()=>{
       const oldVal = document.querySelector("#input-game").value;

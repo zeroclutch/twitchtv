@@ -151,7 +151,7 @@
         </div>
         <div class="is-stream-title-holder">
         <h4 class="title is-4 is-stream-title">
-           {{ streamData.name || currentStream }} | Playing {{ streamData.game || "nothing" }}
+          {{ streamData.name || currentStream }} | Playing <a v-on:click="streamData.game ? changeGame(streamData.game) : null">{{ streamData.game || "nothing" }}</a>
           <span class="tag-group" v-show="streamData.viewers">
             <span class="tag is-danger">{{ streamData.viewers }} viewers</span>
             <span class="tag is-gray">{{ streamData.lifetimeViews }} lifetime views</span>
