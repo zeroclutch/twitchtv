@@ -12,7 +12,7 @@ const twitch = new Twitch({
 var topGames = [];
 
 function refreshTopGames() {
-  twitch.getTopGames()
+  twitch.getTopGames({limit: 50})
   .then(data => {
     topGames = [];
     for(var i = 0; i < data.top.length; i++) {

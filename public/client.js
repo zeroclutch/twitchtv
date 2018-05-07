@@ -88,7 +88,7 @@ var Client = {
   }
 }
 
-console.log(Client.retrieve("streamList", {users:"ninja,drlupo,disguisedtoasths"}))
+//console.log(Client.retrieve("streamList", {users:"ninja,drlupo,disguisedtoasths"}))
 
 var Vue, Twitch, VueRouter, route;
 
