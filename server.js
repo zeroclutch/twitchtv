@@ -106,27 +106,30 @@ app.get("/user", function (request, response) {
   });
 });
 
-app.get("/streamList", function (request, response) {
+/*app.get("/streamList", async function (request, response) {
   const users = request.query.users.split(",");
-  var streams = [];
-  for(var i = 0; i < users.length; i++) {
-    if(users[i]) {
-      twitch.getUser(users[i])
-      .then(data => {
-        if(data.stream) {
-          streams.push({title: data.stream.channel.status, name:data.stream.channel.display_name, viewers:data.stream.viewers, lifetimeViews:data.stream.channel.views, game: data.stream.channel.game, avatar: data.stream.channel.logo})
-        }
-      })
-      .catch(error => {
-        console.error(error);
-        response.send({error});
-      });
-    }
-  }
-  console.log(streams)
-  response.send(streams);
-});
+  const streams = await (function() {
+    var streams = [];
+    for(var i = 0; i < users.length; i++) {
+      if(users[i]) {
+        twitch.getUser(users[i])
+        .then(data => {
+          if(data.stream) {
+            streams.push({title: data.stream.channel.status, name:data.stream.channel.display_name, viewers:data.stream.viewers, lifetimeViews:data.stream.channel.views, game: data.stream.channel.game, avatar: data.stream.channel.logo})
+          }
+        })
+        .catch(error => {
+          console.error(error);
+          response.send({error});
+        });
+      }
 
+    }
+
+    console.log(streams)
+    response.send(streams);
+  })();
+*/
 app.get("/search", function (request, response) {
   twitch.searchGames(request.query.query, true)
     .then(data => {
