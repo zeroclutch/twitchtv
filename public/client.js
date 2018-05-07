@@ -79,6 +79,12 @@ var Client = {
     callback: function(data) {
       return JSON.parse(data)
     }
+  },
+  search: {
+    endpoint: "/search",
+    callback: function(data) {
+      return JSON.parse(data)
+    }
   }
 }
 
