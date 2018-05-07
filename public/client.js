@@ -74,8 +74,8 @@ var Client = {
       return JSON.parse(data)
     }
   },
-  search: {
-    endpoint: "/search",
+  streamList: {
+    endpoint: "/streamList",
     callback: function(data) {
       return JSON.parse(data)
     }
@@ -87,6 +87,8 @@ var Client = {
     }
   }
 }
+
+console.log(Client.retrieve("streamList", {users:"ninja,drlupo,disguisedtoasths"}))
 
 var Vue, Twitch, VueRouter, route;
 
