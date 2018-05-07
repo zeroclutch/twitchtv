@@ -21,7 +21,7 @@ function elmYPosition(selector) {
 }
 
 
-function smoothScroll(selector) {
+function scroll(selector) {
     var startY = currentYPosition();
     var stopY = elmYPosition(selector);
     var distance = stopY > startY ? stopY - startY : startY - stopY;

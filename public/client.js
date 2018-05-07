@@ -111,10 +111,16 @@ const app = new Vue({
     currentStream: "",
     streamData: {},
     gameDropdown: false,
-    gameSearch: {}
+    gameSearch: {},
+    streams: {
+      
+    }
   },
   methods: {
     viewDirectory: function(noRoute) {
+      //Scroll to top
+      scroll("#games");
+      
       //Clear info
       this.currentGame = "",
       this.currentStream = "";
@@ -136,6 +142,9 @@ const app = new Vue({
       if(!noRoute) route("featured", 'Featured | Not Twitch TV');
     },
     changeGame: function(game, noRoute) {
+      //Scroll to top
+      scroll("#games");
+      
       //Remove current stream
       document.getElementById("twitch-embed").innerHTML = "";
       
@@ -148,6 +157,9 @@ const app = new Vue({
       this.state = "streams";
       if(!noRoute) route("games/" + game.replace(/\s/g, "_"), game.replace(/\s/g, "_") + ' | Not Twitch TV');
     }, watchStream: function(stream, noRoute) {
+      //Scroll to top
+      scroll("#games");
+      
       //Set view to show the stream
       const button = document.querySelector(".stream-search");
       button.classList.add("is-loading");
@@ -166,6 +178,8 @@ const app = new Vue({
         const button = document.querySelector(".stream-search");
         button.classList.remove('is-loading');
       });
+    }, starChannel: function(channel) {
+      
     }, hideTitle: function(toggle) {
       //Hides tab info
       document.title = "New Tab";
