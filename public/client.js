@@ -113,7 +113,9 @@ const app = new Vue({
     gameDropdown: false,
     gameSearch: {},
     streams: {
-      
+      starred: (function() {
+        return localStorage.getItem("starred") || []
+      })()
     }
   },
   methods: {
@@ -179,7 +181,7 @@ const app = new Vue({
         button.classList.remove('is-loading');
       });
     }, starChannel: function(channel) {
-      
+      this.streams.starred.push(channel);
     }, hideTitle: function(toggle) {
       //Hides tab info
       document.title = "New Tab";
