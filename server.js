@@ -109,29 +109,21 @@ app.get("/user", function (request, response) {
 
 app.get("/following", function (request, response) {
   var options = {
-    url: 'https://api.twitch.tv/kraken/users/' + response.query.user + '/follows/channels',
+    url: 'https://api.twitch.tv/kraken/users/' + request.query.user + '/follows/channels',
     headers: { 
       'Client-ID': process.env.TID,
       'Accept': 'application/vnd.twitchtv.v5+json'
     }
   };
  
-  function callback(error, response, body) {
-    if (!error && response.statusCode == 200) {
+  function callback(error, res, body) {
+    if (!error && res.statusCode == 200) {
       var info = JSON.parse(body);
-      console.log(info.stargazers_count + " Stars");
-      console.log(info.forks_count + " Forks");
+      response.send(info)
     }
   }
 
-  request(options, callback)
-  .then(data => {
-    response.send(data)
-  })
-  .catch(error => {
-    console.error(error);
-    response.send({"error": error});
-  });
+  http(options, callback)
 });
 
 
