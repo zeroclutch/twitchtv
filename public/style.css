@@ -19,6 +19,11 @@
   margin-top: 90px;
 }
 
+.dropdown-container {
+  display: inline-block;
+  vertical-align: middle;
+}
+
 .title {
   margin: 0 !important;
   text-align: center;

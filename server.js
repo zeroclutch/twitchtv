@@ -138,9 +138,8 @@ app.get("/search", function (request, response) {
       console.log(data.games[0])
       for(var i = 0; i < data.games.length; i++) {
         const currentGame = data.games[i];
-        results.push({name:currentGame.name, logo:currentGame.logo.small})
+        results.push({name:currentGame.name, logo:currentGame.box.template.replace("{width}","14").replace("{height}", "20")})
       }
-      console.log(results)
       response.send({results})
     } else {
       response.send({games:[]})
