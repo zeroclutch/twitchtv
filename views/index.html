@@ -59,8 +59,8 @@
 							</div>
 							<div class="dropdown-menu" id="dropdown-menu" role="menu">
 								<div class="dropdown-content">
-									<a v-on:click="changeGame(game.name)" v-for="game in gameSearch.results" class="dropdown-item">
-                  {{ game.name }}
+								<a style="vertical-align: top;" v-on:click="changeGame(game.name)" v-for="game in gameSearch.results" class="dropdown-item">
+                  <img style="display: inline-block; height: 18px; width: 25px; margin-top: 2px" :src="game.logo"> {{ game.name }}
                 </a>
 								</div>
 							</div>
