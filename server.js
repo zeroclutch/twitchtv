@@ -3,6 +3,7 @@ const express = require('express');
 const app = express();
 
 // add twitch stuff
+const http = require('request');
 const Twitch = require("twitch.tv-api");
 const twitch = new Twitch({
     id: process.env.TWITCH_ID,
@@ -107,7 +108,23 @@ app.get("/user", function (request, response) {
 });
 
 app.get("/following", function (request, response) {
-  twitch.getUser(request.query.user)
+  var options = {
+    url: 'https://api.twitch.tv/kraken/users/' + response.query.user + '/follows/channels',
+    headers: { 
+      'Client-ID': process.env.TID,
+      'Accept': 'application/vnd.twitchtv.v5+json'
+    }
+  };
+ 
+  function callback(error, response, body) {
+    if (!error && response.statusCode == 200) {
+      var info = JSON.parse(body);
+      console.log(info.stargazers_count + " Stars");
+      console.log(info.forks_count + " Forks");
+    }
+  }
+
+  request(options, callback)
   .then(data => {
     response.send(data)
   })
