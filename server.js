@@ -106,6 +106,18 @@ app.get("/user", function (request, response) {
   });
 });
 
+app.get("/following", function (request, response) {
+  twitch.getUser(request.query.user)
+  .then(data => {
+    response.send(data)
+  })
+  .catch(error => {
+    console.error(error);
+    response.send({"error": error});
+  });
+});
+
+
 /*app.get("/streamList", async function (request, response) {
   const users = request.query.users.split(",");
   const streams = await (function() {
