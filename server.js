@@ -138,8 +138,11 @@ app.get("/followingStreams", function (request, response) {
           response.send(info)
         }
       }
-
-      http(options, callback2)
+      if(userID) {
+        http(options, callback2)
+      } else {
+        response.send('{"error": "user not found"}')
+      }
     }
   }
   

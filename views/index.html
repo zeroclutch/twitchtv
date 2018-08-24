@@ -36,7 +36,7 @@
 				<a class="navbar-item has-text-white" v-on:click="viewFeatured()">
             Featured
           </a>
-				<a class="navbar-item has-text-white" v-on:click="/*viewFollowing(user)*/">
+				<a class="navbar-item has-text-white" v-on:click="viewFollowing(user)">
             Following
           </a>
 				<a class="navbar-item has-text-white" v-on:click="hideTitle()">
@@ -45,7 +45,7 @@
 			</div>
       <div class="navbar-end">
         <input class="input is-dark" v-bind:value="user" type="text" placeholder="Your Username">
-            <button v-on:click="/*viewFollowing(user)*/" class="button is-dark">
+            <button v-on:click="viewFollowing(user)" class="button is-dark">
             <i class="fa fa-search"></i> 
         </button>
       </div>
