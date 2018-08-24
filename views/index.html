@@ -51,7 +51,7 @@
       </div>
 		</nav>
 
-		<section class="search-group" v-show="state !== 'featured'">
+		<section class="search-group" v-show="state !== 'following'">
 			<section class="section columns is-centered" @click="dropdownVisibility('game',true, true)">
 				<div class="column is-4 box is-padded">
 					<h6 class="title is-4">
@@ -126,6 +126,20 @@
 		</section>
 
 		<section v-if="state === 'featured'" class="section columns is-centered" @click="dropdownVisibility('game',true, true)">
+			<div class="columns column is-10 is-centered is-multiline">
+				<div class="is-4 column column-item " v-for="stream in featuredStreams" v-on:click="watchStream(stream.name)">
+					<div class="box is-collapsed-stream">
+						<img v-bind:src="stream.preview || 'https://cdn.glitch.com/efe6e070-2c1d-436d-9464-ff6641eae224%2Ftwitchbg.jpg?1523863178418'">
+					</div>
+					<div class="caption">
+						<b>{{ stream.name || "Loading" }}</b><br> {{ stream.title || "Loading" }}<br>
+						<span class="has-text-danger">{{ stream.viewers || "Loading" }} <i class="fa fa-eye"></i></span> <br>
+					</div>
+				</div>
+			</div>
+		</section>
+      
+    <section v-if="state === 'following'" class="section columns is-centered" @click="dropdownVisibility('game',true, true)">
 			<div class="columns column is-10 is-centered is-multiline">
 				<div class="is-4 column column-item " v-for="stream in featuredStreams" v-on:click="watchStream(stream.name)">
 					<div class="box is-collapsed-stream">

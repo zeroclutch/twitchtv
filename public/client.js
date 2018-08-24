@@ -160,7 +160,6 @@ const app = new Vue({
       if(!noRoute) route("featured", 'Featured | Not Twitch TV');
     },
     viewFollowing: function(user, noRoute) {
-      console.log("wat the nuts")
       //Scroll to top
       scroll("#games");
       
@@ -171,7 +170,9 @@ const app = new Vue({
       //Remove current stream
       document.getElementById("twitch-embed").innerHTML = "";
       
+      console.log("wat the nuts")
       this.followingStreams = Client.retrieve("followingStreams", {user});
+      console.log(this.followingStreams);
       this.state = "following";
       
       if(!noRoute) route("following", 'Following | Not Twitch TV');
@@ -179,7 +180,7 @@ const app = new Vue({
     changeGame: function(game, noRoute) {
       //Scroll to top
       scroll("#games");
-      this.topStreams = Client.retrieve("topStreams", {game: game}).streams;
+      this.topStreams = Client.retrieve("topStreams", {game}).streams;
       
       //Remove current stream
       document.getElementById("twitch-embed").innerHTML = "";
