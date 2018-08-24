@@ -80,9 +80,10 @@ app.get("/featuredStreams", function (request, response) {
     for(var i = 0; i < data.featured.length; i++) {
       const currentStream = data.featured[i].stream;
       featuredStreams.push({
-        name:currentStream.channel.name,
-        title:currentStream.channel.status,
-        preview:currentStream.preview.large,
+        name: currentStream.channel.name,
+        game: currentStream.channel.game,
+        title: currentStream.channel.status,
+        preview: currentStream.preview.large,
         viewers: currentStream.viewers,
         quality: currentStream.video_height,
         streamType: currentStream.stream_type
@@ -140,13 +141,15 @@ app.get("/followingStreams", function (request, response) {
           info.follows.forEach((stream) => {
             followingStreams.push({
               name: stream.channel.name,
+              game: stream.channel.game,
               title: stream.channel.status,
-              preview:stream.preview.large,
+              preview: stream.preview.large,
               viewers: stream.viewers,
               quality: stream.video_height,
               streamType: stream.stream_type
             })
           });
+          response.send(followingStreams);
         }
       }
       

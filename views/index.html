@@ -44,14 +44,14 @@
           </a>
 			</div>
       <div class="navbar-end">
-        <input class="input is-dark" v-bind:value="user" type="text" placeholder="Your Username">
+        <input class="input is-dark" v-bind:value="user" type="text" placeholder="Your username">
             <button v-on:click="viewFollowing(user)" class="button is-dark">
             <i class="fa fa-search"></i> 
         </button>
       </div>
 		</nav>
 
-		<section class="search-group" v-show="state !== 'following'">
+		<section class="search-group" v-if="state !== 'following'">
 			<section class="section columns is-centered" @click="dropdownVisibility('game',true, true)">
 				<div class="column is-4 box is-padded">
 					<h6 class="title is-4">
@@ -97,6 +97,23 @@
 				</div>
 			</section>
 		</section>
+      
+      <section class="search-group" v-if="state === 'following'">
+			<section class="section columns is-centered">
+				<div class="column is-4 box is-padded">
+					<h6 class="title is-4">
+						<i class="fa fa-gamepad fa-3x has-text-dark"></i><br> Find streams you follow
+					</h6>
+					<br>
+					<div v-on:keyup.enter="changeGame(currentGame)">
+						<input class="input is-wide is-dark" v-model="name" placeholder="Your username">
+						<button v-on:click="changeGame(currentGame)" class="button is-dark user-search">
+               <i class="fa fa-search"></i> 
+            </button>
+					</div>
+				</div>
+        </section>
+      </section>
 
 		<hr id="games">
 
@@ -141,7 +158,7 @@
       
     <section v-if="state === 'following'" class="section columns is-centered" @click="dropdownVisibility('game',true, true)">
 			<div class="columns column is-10 is-centered is-multiline">
-				<div class="is-4 column column-item " v-for="stream in featuredStreams" v-on:click="watchStream(stream.name)">
+				<div class="is-4 column column-item " v-for="stream in followingStreams" v-on:click="viewFollowing(user)">
 					<div class="box is-collapsed-stream">
 						<img v-bind:src="stream.preview || 'https://cdn.glitch.com/efe6e070-2c1d-436d-9464-ff6641eae224%2Ftwitchbg.jpg?1523863178418'">
 					</div>
