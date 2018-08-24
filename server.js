@@ -119,10 +119,11 @@ app.get("/followingStreams", function (request, response) {
     }
   };
   
-  function callback(error, res, body) {
+  function getUserID(error, res, body) {
     if (!error && res.statusCode == 200) {
       var info = JSON.parse(body);
-      userID = info.data[0].id
+      console.log(info)
+      userID = info.data ? info.data[0].id : undefined;
       //Get following list
       var options = {
         url: 'https://api.twitch.tv/kraken/users/' + (userID || request.query.user) + '/follows/channels',
@@ -132,21 +133,28 @@ app.get("/followingStreams", function (request, response) {
         }
       };
 
-      function callback2(error, res, body) {
+      function getFollowing(error, res, body) {
         if (!error && res.statusCode == 200) {
           var info = JSON.parse(body);
-          response.send(info)
+          var followingStreams = [];
+          info.follows.forEach((stream) => {
+            followingStreams.push({
+              name: stream.channel.name,
+              title: stream.channel.status,
+              preview:stream.preview.large,
+              viewers: stream.viewers,
+              quality: stream.video_height,
+              streamType: stream.stream_type
+            })
+          });
         }
       }
-      if(userID) {
-        http(options, callback2)
-      } else {
-        response.send('{"error": "user not found"}')
-      }
-    }
+      
+      if(userID) http(options, getFollowing)
+    } else response.send('{"error": "user not found"}');
   }
   
-  http(options, callback)
+  http(options, getUserID)
 });
 
 
