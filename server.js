@@ -139,7 +139,7 @@ app.get("/followingStreams", function (request, response) {
           var info = JSON.parse(body);
           var followingStreams = [];
           info.follows.forEach((stream) => {
-            twitch.getUser(stream.channel.name)
+            /*twitch.getUser(stream.channel.name)
             .then(data => {
               console.log(data)
               //response.send({title: data.stream.channel.status, name:data.stream.channel.display_name, viewers:data.stream.viewers, lifetimeViews:data.stream.channel.views, game: data.stream.channel.game, avatar: data.stream.channel.logo})
@@ -161,8 +161,9 @@ app.get("/followingStreams", function (request, response) {
             .catch(error => {
               console.error(error);
               response.send({"error": error});
-            });
+            });*/
           });
+          console.log(followingStreams)
           response.send(followingStreams);
         }
       }
