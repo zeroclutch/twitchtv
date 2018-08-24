@@ -105,9 +105,9 @@
 						<i class="fa fa-gamepad fa-3x has-text-dark"></i><br> Find streams you follow
 					</h6>
 					<br>
-					<div v-on:keyup.enter="viewFollowing(user)">
-						<input class="input is-wide is-dark" v-model="user" placeholder="Your username">
-						<button v-on:click="viewFollowing(user)" class="button is-dark user-search">
+					<div v-on:keyup.enter="changeGame(currentGame)">
+						<input class="input is-wide is-dark" v-model="name" placeholder="Your username">
+						<button v-on:click="changeGame(currentGame)" class="button is-dark user-search">
                <i class="fa fa-search"></i> 
             </button>
 					</div>
@@ -158,13 +158,13 @@
       
     <section v-if="state === 'following'" class="section columns is-centered" @click="dropdownVisibility('game',true, true)">
 			<div class="columns column is-10 is-centered is-multiline">
-				<div class="is-4 column column-item " v-for="stream in followingStreams" v-on:click="watchStream(stream.name)">
-					<div class="box is-collapsed-stream" v-if="stream.stream">
+				<div class="is-4 column column-item " v-for="stream in followingStreams" v-on:click="viewFollowing(user)">
+					<div class="box is-collapsed-stream">
 						<img v-bind:src="stream.preview || 'https://cdn.glitch.com/efe6e070-2c1d-436d-9464-ff6641eae224%2Ftwitchbg.jpg?1523863178418'">
 					</div>
 					<div class="caption">
-						<b>{{ stream.stream.name || "Loading" }}</b><br> {{ stream.stream.title || "Loading" }}<br>
-						<span class="has-text-danger">{{ stream.stream.viewers || "Loading" }} <i class="fa fa-eye"></i></span> <br>
+						<b>{{ stream.name || "Loading" }}</b><br> {{ stream.title || "Loading" }}<br>
+						<span class="has-text-danger">{{ stream.viewers || "Loading" }} <i class="fa fa-eye"></i></span> <br>
 					</div>
 				</div>
 			</div>
