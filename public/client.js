@@ -68,6 +68,12 @@ var Client = {
       return JSON.parse(data)
     }
   },
+  featuredStreams: {
+    endpoint: "/followingStreams",
+    callback: function(data) {
+      return JSON.parse(data)
+    }
+  },
   user: {
     endpoint: "/user",
     callback: function(data) {
@@ -113,6 +119,7 @@ const app = new Vue({
     topGames: Client.retrieve("topGames"),
     topStreams: {},
     featuredStreams: [],
+    followingStreams: [],
     currentGame: "",
     currentStream: "",
     user: "",
@@ -161,7 +168,10 @@ const app = new Vue({
       //Remove current stream
       document.getElementById("twitch-embed").innerHTML = "";
       
-      this.featuredStreams = Client.retrieve("featuredStreams", {user});
+      this.followingStreams = Client.retrieve("followingStreams", {user});
+      this.state = "following";
+      
+      if(!noRoute) route("following", 'Following | Not Twitch TV');
     },
     changeGame: function(game, noRoute) {
       //Scroll to top
@@ -201,6 +211,7 @@ const app = new Vue({
         const button = document.querySelector(".stream-search");
         button.classList.remove('is-loading');
       });
+    }, changeUser: function (user) {
     }, starChannel: function(channel) {
       this.streams.starred.push(channel);
     }, hideTitle: function(toggle) {

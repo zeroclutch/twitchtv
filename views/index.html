@@ -44,7 +44,7 @@
           </a>
 			</div>
       <div class="navbar-end">
-        <input class="input" type="text" placeholder="Your Username">
+        <input class="input is-primary" v-bind:value="user" type="text" placeholder="Your Username">
         <button v-on:click="changeGame(currentGame)" class="button is-info game-search">
             <i class="fa fa-search"></i> 
         </button>

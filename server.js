@@ -107,7 +107,7 @@ app.get("/user", function (request, response) {
   });
 });
 
-app.get("/following", function (request, response) {
+app.get("/followingStreams", function (request, response) {
   //Get client ID
   //https://api.twitch.tv/helix/users?login=<username>
   var userID;
