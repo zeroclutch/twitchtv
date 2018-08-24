@@ -88,8 +88,6 @@ var Client = {
   }
 }
 
-//console.log(Client.retrieve("streamList", {users:"ninja,drlupo,disguisedtoasths"}))
-
 var Vue, Twitch, VueRouter, route;
 
 //Setup routing
@@ -117,6 +115,7 @@ const app = new Vue({
     featuredStreams: [],
     currentGame: "",
     currentStream: "",
+    user: "",
     streamData: {},
     gameDropdown: false,
     gameSearch: {},
@@ -151,9 +150,23 @@ const app = new Vue({
       
       if(!noRoute) route("featured", 'Featured | Not Twitch TV');
     },
+    viewFollowing: function(user, noRoute) {
+      //Scroll to top
+      scroll("#games");
+      
+      //Clear info
+      this.currentGame = "",
+      this.currentStream = "";
+      
+      //Remove current stream
+      document.getElementById("twitch-embed").innerHTML = "";
+      
+      this.featuredStreams = Client.retrieve("featuredStreams", {user});
+    },
     changeGame: function(game, noRoute) {
       //Scroll to top
       scroll("#games");
+      this.topStreams = Client.retrieve("topStreams", {game: game}).streams;
       
       //Remove current stream
       document.getElementById("twitch-embed").innerHTML = "";
