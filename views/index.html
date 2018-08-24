@@ -36,7 +36,7 @@
 				<a class="navbar-item has-text-white" v-on:click="viewFeatured()">
             Featured
           </a>
-				<a class="navbar-item has-text-white" v-on:click="viewFollowing()">
+				<a class="navbar-item has-text-white" v-on:click="viewFollowing(user)">
             Following
           </a>
 				<a class="navbar-item has-text-white" v-on:click="hideTitle()">
@@ -44,14 +44,14 @@
           </a>
 			</div>
       <div class="navbar-end">
-        <input class="input is-primary" v-bind:value="user" type="text" placeholder="Your Username">
-        <button v-on:click="changeGame(currentGame)" class="button is-info game-search">
+        <input class="input is-dark" v-bind:value="user" type="text" placeholder="Your Username">
+            <button v-on:click="viewFollowing(user)" class="button is-dark">
             <i class="fa fa-search"></i> 
         </button>
       </div>
 		</nav>
 
-		<section class="search-group">
+		<section class="search-group" v-show="state !== 'featured'">
 			<section class="section columns is-centered" @click="dropdownVisibility('game',true, true)">
 				<div class="column is-4 box is-padded">
 					<h6 class="title is-4">
@@ -202,4 +202,4 @@
 	<script src="client.js"></script>
 </body>
 
-</html>
+</html>i

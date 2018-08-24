@@ -68,7 +68,7 @@ var Client = {
       return JSON.parse(data)
     }
   },
-  featuredStreams: {
+  followingStreams: {
     endpoint: "/followingStreams",
     callback: function(data) {
       return JSON.parse(data)
@@ -158,6 +158,7 @@ const app = new Vue({
       if(!noRoute) route("featured", 'Featured | Not Twitch TV');
     },
     viewFollowing: function(user, noRoute) {
+      console.log("wat the nuts")
       //Scroll to top
       scroll("#games");
       
@@ -212,6 +213,7 @@ const app = new Vue({
         button.classList.remove('is-loading');
       });
     }, changeUser: function (user) {
+      
     }, starChannel: function(channel) {
       this.streams.starred.push(channel);
     }, hideTitle: function(toggle) {

@@ -93,3 +93,7 @@
   padding: 15px;
 }
 
+.navbar-end input {
+  margin-right: 5px;
+  max-width: calc(100% - 60px);
+}
