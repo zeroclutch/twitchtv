@@ -122,7 +122,7 @@ app.get("/following", function (request, response) {
   function callback(error, res, body) {
     if (!error && res.statusCode == 200) {
       var info = JSON.parse(body);
-      userID = info
+      userID = info.data[0].id
       //Get following list
       var options = {
         url: 'https://api.twitch.tv/kraken/users/' + (userID || request.query.user) + '/follows/channels',
