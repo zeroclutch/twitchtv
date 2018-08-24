@@ -139,15 +139,29 @@ app.get("/followingStreams", function (request, response) {
           var info = JSON.parse(body);
           var followingStreams = [];
           info.follows.forEach((stream) => {
-            followingStreams.push({
-              name: stream.channel.name,
-              game: stream.channel.game,
-              title: stream.channel.status,
-              preview: stream.preview.large,
-              viewers: stream.viewers,
-              quality: stream.video_height,
-              streamType: stream.stream_type
+            twitch.getUser(stream.channel.name)
+            .then(data => {
+              console.log(data)
+              //response.send({title: data.stream.channel.status, name:data.stream.channel.display_name, viewers:data.stream.viewers, lifetimeViews:data.stream.channel.views, game: data.stream.channel.game, avatar: data.stream.channel.logo})
+              followingStreams.push({
+                stream: data.stream ? {
+                  name: data.stream.channel.name,
+                  game: data.stream.channel.game,
+                  title: data.stream.channel.status,
+                  preview: data.stream.preview.large,
+                  viewers: data.stream.viewers,
+                  quality: data.stream.video_height,
+                  streamType: data.stream.stream_type
+                } : null,
+                name: stream.channel.name,
+                game: stream.channel.game,
+                title: stream.channel.status
+              })
             })
+            .catch(error => {
+              console.error(error);
+              response.send({"error": error});
+            });
           });
           response.send(followingStreams);
         }
