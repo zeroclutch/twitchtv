@@ -105,6 +105,8 @@ route(function(target, params) {
     app.viewDirectory(true);
   } else if (target === "featured") {
     app.viewFeatured(true);
+  } else if (target === "following") {
+    app.viewFollowing(params, true);
   } else if (target === "games") {
     app.changeGame(params.replace(/_/g, " "), true);
   } else if (target === "channels") {
