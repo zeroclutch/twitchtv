@@ -154,7 +154,7 @@ app.get("/followingStreams", function (request, response) {
                   streamType: data.stream.stream_type
                 } : null,
                 name: stream.channel.name,
-                game: stream.channel.game,
+                logo: stream.channel.logo,
                 title: stream.channel.status
               })
             })
