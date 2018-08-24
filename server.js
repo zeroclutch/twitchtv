@@ -108,21 +108,41 @@ app.get("/user", function (request, response) {
 });
 
 app.get("/following", function (request, response) {
+  //Get client ID
+  //https://api.twitch.tv/helix/users?login=<username>
+  var userID;
   var options = {
-    url: 'https://api.twitch.tv/kraken/users/' + request.query.user + '/follows/channels',
+    url: 'https://api.twitch.tv/helix/users?login=' + request.query.user,
     headers: { 
       'Client-ID': process.env.TID,
       'Accept': 'application/vnd.twitchtv.v5+json'
     }
   };
- 
+  
   function callback(error, res, body) {
     if (!error && res.statusCode == 200) {
       var info = JSON.parse(body);
-      response.send(info)
+      userID = info
+      //Get following list
+      var options = {
+        url: 'https://api.twitch.tv/kraken/users/' + (userID || request.query.user) + '/follows/channels',
+        headers: { 
+          'Client-ID': process.env.TID,
+          'Accept': 'application/vnd.twitchtv.v5+json'
+        }
+      };
+
+      function callback2(error, res, body) {
+        if (!error && res.statusCode == 200) {
+          var info = JSON.parse(body);
+          response.send(info)
+        }
+      }
+
+      http(options, callback2)
     }
   }
-
+  
   http(options, callback)
 });
 
