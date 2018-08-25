@@ -110,6 +110,7 @@
 						<button v-on:click="viewFollowing(user)" class="button is-dark user-search">
                <i class="fa fa-search"></i> 
             </button>
+            <span class="help has-text-danger" v-show="followingStreams.error">User not found. Usernames are case-sensitive.</span>
 					</div>
 				</div>
         </section>
@@ -156,7 +157,7 @@
 			</div>
 		</section>
       
-    <section v-if="state === 'following' && followingStreams != [" class="section columns is-centered" @click="">
+    <section v-if="state === 'following' && followingStreams != []" class="section columns is-centered" @click="">
 			<div class="columns column is-10 is-centered is-multiline">
 				<div class="is-4 column column-item " v-for="stream in followingStreams" v-on:click="watchStream(stream.name)">
 					<div class="box is-collapsed-stream">

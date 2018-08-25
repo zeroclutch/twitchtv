@@ -123,8 +123,8 @@ app.get("/followingStreams", function (request, response) {
   function getUserID(error, res, body) {
     if (!error && res.statusCode == 200) {
       var info = JSON.parse(body);
-      console.log(info)
-      userID = info.data ? info.data[0].id : undefined;
+      userID = info.data[0] ? info.data[0].id : undefined;
+      console.log(userID)
       //Get following list
       var options = {
         url: 'https://api.twitch.tv/kraken/users/' + (userID || request.query.user) + '/follows/channels?limit=100',
@@ -153,7 +153,7 @@ app.get("/followingStreams", function (request, response) {
         }
       }
       
-      if(userID) http(options, getFollowing)
+      if(userID) http(options, getFollowing);
     } else response.send('{"error": "user not found"}');
   }
   
