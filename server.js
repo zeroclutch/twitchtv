@@ -148,7 +148,7 @@ app.get("/followingStreams", function (request, response) {
               streamType: stream.stream_type
             })
           });
-          response.send(info);
+          response.send(followingStreams);
         }
       }
       
