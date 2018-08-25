@@ -143,13 +143,12 @@ app.get("/followingStreams", function (request, response) {
               name: stream.channel.name,
               game: stream.channel.game,
               title: stream.channel.status,
-              preview: stream.preview.large,
               viewers: stream.viewers,
               quality: stream.video_height,
               streamType: stream.stream_type
             })
           });
-          response.send(followingStreams);
+          response.send(info);
         }
       }
       
