@@ -103,6 +103,8 @@ route.base('#/')
 route(function(target, params) {
   if (target === "directory") {
     app.viewDirectory(true);
+  } else if (target === "") {
+    route("directory", 'Directory | Not Twitch TV');
   } else if (target === "featured") {
     app.viewFeatured(true);
   } else if (target === "following") {
@@ -138,7 +140,7 @@ const app = new Vue({
     viewDirectory: function(noRoute) {
       document.querySelector('#navmenu').classList.remove('is-active');
       //Scroll to top
-      scroll("#games");
+      scroll("#app");
       
       //Clear info
       this.currentGame = "",
@@ -149,6 +151,9 @@ const app = new Vue({
       if(!noRoute) route("directory", 'Directory | Not Twitch TV');
     },
     viewFeatured: function(noRoute) {
+      //Scroll to top
+      scroll("#games");
+      
       document.querySelector('#navmenu').classList.remove('is-active');
       //Clear info
       this.currentGame = "",
@@ -161,7 +166,10 @@ const app = new Vue({
       
       if(!noRoute) route("featured", 'Featured | Not Twitch TV');
     },
-    viewFollowing: function(user, noRoute) {
+    viewFollowing: function(user, noRoute) { 
+      //Scroll to top
+      scroll("#app");
+      
       document.querySelector('#navmenu').classList.remove('is-active');
       //Clear info
       this.currentGame = "",
