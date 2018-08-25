@@ -158,9 +158,9 @@
       
     <section v-if="state === 'following'" class="section columns is-centered" @click="dropdownVisibility('game',true, true)">
 			<div class="columns column is-10 is-centered is-multiline">
-				<div class="is-4 column column-item " v-for="stream in followingStreams" v-on:click="viewFollowing(user)">
+				<div class="is-4 column column-item " v-for="stream in followingStreams" v-on:click="watchStream(user)">
 					<div class="box is-collapsed-stream">
-						<img v-bind:src="stream.preview || 'https://cdn.glitch.com/efe6e070-2c1d-436d-9464-ff6641eae224%2Ftwitchbg.jpg?1523863178418'">
+						<img v-bind:src="stream.preview || ''">
 					</div>
 					<div class="caption">
 						<b>{{ stream.name || "Loading" }}</b><br> {{ stream.title || "Loading" }}<br>

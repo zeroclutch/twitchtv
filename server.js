@@ -145,6 +145,7 @@ app.get("/followingStreams", function (request, response) {
               title: stream.channel.status,
               viewers: stream.viewers,
               quality: stream.video_height,
+              preview: 'https://static-cdn.jtvnw.net/previews-ttv/live_user_{user}-640x360.jpg'.replace('{user}',stream.channel.name),
               streamType: stream.stream_type
             })
           });
