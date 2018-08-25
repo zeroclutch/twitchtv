@@ -18,12 +18,12 @@
 <body>
 	<div id="app">
     <div class="wrap">
-		<a role="button" class="navbar-burger has-text-success" data-target="navMenu" aria-label="menu" aria-expanded="false">
+		<a role="button" class="navbar-burger has-text-success" data-target="navmenu" aria-label="menu" aria-expanded="false">
         <span aria-hidden="true"></span>
         <span aria-hidden="true"></span>
         <span aria-hidden="true"></span>
       </a>
-		<nav class="navbar-menu navbar is-success is-fixed-top has-text-white" id="navMenu" role="navigation" aria-label="main navigation">
+		<nav class="navbar-menu navbar is-success is-fixed-top has-text-white" id="navmenu" role="navigation" aria-label="main navigation" :click="document.getElementById('#navmenu').classList.toggle('is-active')">
 			<div class="navbar-start">
 				<div class="navbar-brand">
 					<a class="navbar-item" href="/">
@@ -146,7 +146,7 @@
 			<div class="columns column is-10 is-centered is-multiline">
 				<div class="is-4 column column-item " v-for="stream in featuredStreams" v-on:click="watchStream(stream.name)">
 					<div class="box is-collapsed-stream">
-						<img v-bind:src="stream.preview || 'https://cdn.glitch.com/efe6e070-2c1d-436d-9464-ff6641eae224%2Ftwitchbg.jpg?1523863178418'">
+						<img v-if="stream.preview !== 'https://static-cdn.jtvnw.net/ttv-static/404_preview-640x360.jpg'" v-bind:src="stream.preview || 'https://cdn.glitch.com/efe6e070-2c1d-436d-9464-ff6641eae224%2Ftwitchbg.jpg?1523863178418'">
 					</div>
 					<div class="caption">
 						<b>{{ stream.name || "Loading" }}</b><br> {{ stream.title || "Loading" }}<br>
