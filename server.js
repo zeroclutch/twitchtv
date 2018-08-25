@@ -154,6 +154,7 @@ app.get("/followingStreams", function (request, response) {
       }
       
       if(userID) http(options, getFollowing);
+      else response.send('{"error": "user not found"}');
     } else response.send('{"error": "user not found"}');
   }
   
