@@ -23,7 +23,7 @@
         <span aria-hidden="true"></span>
         <span aria-hidden="true"></span>
       </a>
-		<nav class="navbar-menu navbar is-success is-fixed-top has-text-white" id="navmenu" role="navigation" aria-label="main navigation" :click="document.getElementById('#navmenu').classList.toggle('is-active')">
+		<nav class="navbar-menu navbar is-success is-fixed-top has-text-white" id="navmenu" role="navigation" aria-label="main navigation">
 			<div class="navbar-start">
 				<div class="navbar-brand">
 					<a class="navbar-item" href="/">
@@ -156,7 +156,7 @@
 			</div>
 		</section>
       
-    <section v-if="state === 'following'" class="section columns is-centered" @click="">
+    <section v-if="state === 'following' && followingStreams != [" class="section columns is-centered" @click="">
 			<div class="columns column is-10 is-centered is-multiline">
 				<div class="is-4 column column-item " v-for="stream in followingStreams" v-on:click="watchStream(stream.name)">
 					<div class="box is-collapsed-stream">

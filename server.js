@@ -127,7 +127,7 @@ app.get("/followingStreams", function (request, response) {
       userID = info.data ? info.data[0].id : undefined;
       //Get following list
       var options = {
-        url: 'https://api.twitch.tv/kraken/users/' + (userID || request.query.user) + '/follows/channels',
+        url: 'https://api.twitch.tv/kraken/users/' + (userID || request.query.user) + '/follows/channels?limit=100',
         headers: { 
           'Client-ID': process.env.TID,
           'Accept': 'application/vnd.twitchtv.v5+json'

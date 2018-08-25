@@ -136,6 +136,7 @@ const app = new Vue({
   },
   methods: {
     viewDirectory: function(noRoute) {
+      document.querySelector('#navmenu').classList.remove('is-active');
       //Scroll to top
       scroll("#games");
       
@@ -148,6 +149,7 @@ const app = new Vue({
       if(!noRoute) route("directory", 'Directory | Not Twitch TV');
     },
     viewFeatured: function(noRoute) {
+      document.querySelector('#navmenu').classList.remove('is-active');
       //Clear info
       this.currentGame = "",
       this.currentStream = "";
@@ -160,7 +162,7 @@ const app = new Vue({
       if(!noRoute) route("featured", 'Featured | Not Twitch TV');
     },
     viewFollowing: function(user, noRoute) {
-      
+      document.querySelector('#navmenu').classList.remove('is-active');
       //Clear info
       this.currentGame = "",
       this.currentStream = "";
@@ -218,6 +220,7 @@ const app = new Vue({
     }, starChannel: function(channel) {
       this.streams.starred.push(channel);
     }, hideTitle: function(toggle) {
+      document.querySelector('#navmenu').classList.remove('is-active');
       //Hides tab info
       document.title = "New Tab";
       var link = document.querySelector("link[rel*='icon']") || document.createElement('link');
