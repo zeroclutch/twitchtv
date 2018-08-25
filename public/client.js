@@ -160,8 +160,6 @@ const app = new Vue({
       if(!noRoute) route("featured", 'Featured | Not Twitch TV');
     },
     viewFollowing: function(user, noRoute) {
-      //Scroll to top
-      scroll("#games");
       
       //Clear info
       this.currentGame = "",
@@ -199,7 +197,7 @@ const app = new Vue({
       
       //Set view to show the stream
       const button = document.querySelector(".stream-search");
-      button.classList.add("is-loading");
+      if(button) button.classList.add("is-loading");
       this.streamData = Client.retrieve("user", {user: stream});
       
       this.currentStream = stream;
