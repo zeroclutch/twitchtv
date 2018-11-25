@@ -98,7 +98,7 @@ var Vue, Twitch, VueRouter, route;
 
 //Setup routing
 route.start(true)
-route.base('#/')
+route.base('/')
 
 route(function(target, params) {
   if (target === "directory") {
