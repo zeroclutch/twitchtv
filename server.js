@@ -36,11 +36,6 @@ setInterval(() => {
 // http://expressjs.com/en/starter/static-files.html
 app.use(express.static('public'));
 
-// http://expressjs.com/en/starter/basic-routing.html
-app.get("/", function (request, response) {
-  response.sendFile(__dirname + '/views/index.html');
-});
-
 app.get("/topGames", function (request, response) {
   response.send(topGames);
 });
@@ -100,7 +95,14 @@ app.get("/featuredStreams", function (request, response) {
 app.get("/user", function (request, response) {
   twitch.getUser(request.query.user)
   .then(data => {
-    response.send({title: data.stream.channel.status, name:data.stream.channel.display_name, viewers:data.stream.viewers, lifetimeViews:data.stream.channel.views, game: data.stream.channel.game, avatar: data.stream.channel.logo})
+    response.send({
+      title: data.stream.channel.status,
+      name:data.stream.channel.display_name,
+      viewers:data.stream.viewers,
+      lifetimeViews:data.stream.channel.views,
+      game: data.stream.channel.game,
+      avatar: data.stream.channel.logo
+    })
   })
   .catch(error => {
     console.error(error);
@@ -206,6 +208,12 @@ app.get("/search", function (request, response) {
         response.send({"error": error})
     });
 });
+
+// http://expressjs.com/en/starter/basic-routing.html
+app.get("*", function (request, response) {
+  response.sendFile(__dirname + '/views/index.html');
+});
+
 
 // listen for requests :)
 var listener = app.listen(process.env.PORT, function () {
