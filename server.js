@@ -34,7 +34,9 @@ setInterval(() => {
 
 
 // http://expressjs.com/en/starter/static-files.html
-app.use(express.static('public'));
+//app.use(express.static(__dirname + '/public'));
+app.use(express.static('public'))
+
 
 app.get("/topGames", function (request, response) {
   response.send(topGames);
@@ -51,9 +53,9 @@ app.get("/topStreams", function (request, response) {
     for(var i = 0; i < data.streams.length; i++) {
       const currentStream = data.streams[i];
       topStreams.streams.push({
-        name:currentStream.channel.name,
-        title:currentStream.channel.status,
-        preview:currentStream.preview.large,
+        name: currentStream.channel.name,
+        title: currentStream.channel.status,
+        preview: currentStream.preview.large,
         viewers: currentStream.viewers,
         quality: currentStream.video_height,
         streamType: currentStream.stream_type
