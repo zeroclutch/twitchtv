@@ -97,6 +97,7 @@ app.get("/featuredStreams", function (request, response) {
 app.get("/user", function (request, response) {
   twitch.getUser(request.query.user)
   .then(data => {
+    console.log(data)
     response.send({
       title: data.stream.channel.status,
       name:data.stream.channel.display_name,
@@ -117,7 +118,7 @@ app.get("/followingStreams", function (request, response) {
   //https://api.twitch.tv/helix/users?login=<username>
   var userID;
   var options = {
-    url: 'https://api.twitch.tv/helix/users?login=' + request.query.user,
+    url: 'https://api.twitch.tv/kraken/users?login=' + request.query.user,
     headers: { 
       'Client-ID': process.env.TID,
       'Accept': 'application/vnd.twitchtv.v5+json'
