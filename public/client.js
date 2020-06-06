@@ -207,7 +207,11 @@ const app = new Vue({
       //Set view to show the stream
       const button = document.querySelector(".stream-search");
       if(button) button.classList.add("is-loading");
-      this.streamData = Client.retrieve("user", {user: stream});
+      
+      setTimeout(function() {
+        this.streamData = Client.retrieve("user", {user: stream});
+      })
+      
       
       this.currentStream = stream;
       this.state = "watching"
@@ -233,7 +237,7 @@ const app = new Vue({
       var link = document.querySelector("link[rel*='icon']") || document.createElement('link');
       link.type = 'image/x-icon';
       link.rel = 'icon';
-      link.href = 'error404';
+      link.href = '//error404';
       document.getElementsByTagName('head')[0].appendChild(link);
     }, search: function(query) {
       Vue.nextTick(()=>{
