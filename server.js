@@ -127,9 +127,10 @@ app.get("/followingStreams", function (request, response) {
   
   function getUserID(error, res, body) {
     if (!error && res.statusCode == 200) {
-      var info = JSON.parse(body);
-      userID = info.data[0] ? info.data[0].id : undefined;
-      console.log(userID)
+      body = JSON.parse(body);
+      console.log(body)
+      userID = body.users[0] ? body.users[0]._id : undefined;
+      console.log(userID);
       //Get following list
       var options = {
         url: 'https://api.twitch.tv/kraken/users/' + (userID || request.query.user) + '/follows/channels?limit=100',
@@ -140,6 +141,7 @@ app.get("/followingStreams", function (request, response) {
       };
 
       function getFollowing(error, res, body) {
+        console.log(error, body)
         if (!error && res.statusCode == 200) {
           var info = JSON.parse(body);
           var followingStreams = [];
