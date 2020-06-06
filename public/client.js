@@ -178,7 +178,6 @@ const app = new Vue({
       //Remove current stream
       document.getElementById("twitch-embed").innerHTML = "";
       
-      console.log("wat the nuts")
       this.followingStreams = Client.retrieve("followingStreams", {user});
       console.log(this.followingStreams);
       this.state = "following";
