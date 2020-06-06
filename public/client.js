@@ -208,10 +208,8 @@ const app = new Vue({
       const button = document.querySelector(".stream-search");
       if(button) button.classList.add("is-loading");
       
-      setTimeout(function() {
-        this.streamData = Client.retrieve("user", {user: stream});
-      })
       
+      this.streamData = Client.retrieve("user", {user: stream});
       
       this.currentStream = stream;
       this.state = "watching"
@@ -257,3 +255,9 @@ const app = new Vue({
     }
   }
 });
+
+setInterval(function() {
+  if(app.currentStream) {
+    app.streamData = Client.retrieve("user", {user: app.currentStream});
+  }
+},1000)
