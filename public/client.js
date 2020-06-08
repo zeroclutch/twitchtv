@@ -260,4 +260,4 @@ setInterval(function() {
   if(app.currentStream) {
     app.streamData = Client.retrieve("user", {user: app.currentStream});
   }
-},1000)
+},10000)
