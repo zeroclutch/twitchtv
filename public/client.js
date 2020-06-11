@@ -116,10 +116,12 @@ route(function(target, params) {
   }
 })
 
+// load content
+
 const app = new Vue({
   el: "#app",
   data: {
-    state: "directory",
+    state: "loading",
     topGames: Client.retrieve("topGames"),
     topStreams: {},
     featuredStreams: [],
@@ -135,6 +137,12 @@ const app = new Vue({
         return localStorage.getItem("starred") || []
       })()
     }
+  },
+  mounted: function() {
+    // make content visible
+    let wrap = document.querySelector('.wrap')
+    wrap.classList.remove('is-hidden')
+    wrap.style.opacity = 1
   },
   methods: {
     viewDirectory: function(noRoute) {
@@ -178,8 +186,7 @@ const app = new Vue({
       //Remove current stream
       document.getElementById("twitch-embed").innerHTML = "";
       
-      this.followingStreams = Client.retrieve("followingStreams", {user});
-      console.log(this.followingStreams);
+      this.followingStreams = Client.retrieve("followingStreams", {user})
       this.state = "following";
       
       if(!noRoute) route("following", 'Following | Not Twitch TV');
@@ -207,7 +214,6 @@ const app = new Vue({
       //Set view to show the stream
       const button = document.querySelector(".stream-search");
       if(button) button.classList.add("is-loading");
-      
       
       this.streamData = Client.retrieve("user", {user: stream});
       
@@ -245,13 +251,30 @@ const app = new Vue({
           if(oldVal == currentVal) {
               this.gameSearch = Client.retrieve("search", {query});
           }
-        }, 550);
+        }, 200);
       });
     }, dropdownVisibility: function(name, visible, fast) {
       const dropdown = name == 'game' ? document.querySelector(".game-dropdown") : document.querySelector(".stream-dropdown");
       if (visible) dropdown.classList.add('is-active');
       if (!visible && !fast) setTimeout( () => dropdown.classList.remove('is-active'), 1000);
       if (!visible && fast) dropdown.classList.remove('is-active');
+    }, streamIsLive: function(name, url) {
+      // checks if a stream is live based on its current thumbnail
+      var xhr = new XMLHttpRequest();
+      xhr.open('GET', url, true);
+      xhr.responseType = 'arraybuffer'; // this will accept the response as an ArrayBuffer
+      xhr.onload = function(buffer) {
+          var words = new Uint8Array(buffer.target.response),
+              hex = '';
+          for (var i = 0; i < words.length; i++) {
+            hex += words[i].toString(32);  // this will convert it to a 4byte hex string
+          }
+          if(hex == defaultImage) {
+            document.getElementById(name).style.display = 'none'
+          }
+      };
+      xhr.send();
+      return true
     }
   }
 });

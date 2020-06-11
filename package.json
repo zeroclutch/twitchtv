@@ -2,17 +2,18 @@
   "//1": "describes your app and its dependencies",
   "//2": "https://docs.npmjs.com/files/package.json",
   "//3": "updating this file will download and update your packages",
-  "name": "hello-express",
-  "version": "0.0.1",
-  "description": "A simple Node app built on Express, instantly up and running.",
+  "name": "twitch-tv",
+  "version": "1.0.0",
+  "description": "Ad-free Twitch viewing, with a cleaner interface.",
   "main": "server.js",
   "scripts": {
     "start": "node server.js"
   },
   "dependencies": {
+    "dotenv": "^8.2.0",
     "express": "^4.16.3",
-    "twitch.tv-api": "^1.2.4",
-    "request": "^2.88.0"
+    "request": "^2.88.0",
+    "twitch.tv-api": "^1.2.4"
   },
   "engines": {
     "node": "8.x"
@@ -23,7 +24,10 @@
   "license": "MIT",
   "keywords": [
     "node",
-    "glitch",
-    "express"
+    "twitch",
+    "stream",
+    "video",
+    "gaming",
+    "vue"
   ]
 }

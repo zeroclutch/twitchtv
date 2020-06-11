@@ -10,6 +10,22 @@
   }
 } */
 
+.super-hero {
+  height: 100vh;
+}
+
+.super-centered {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.wrap {
+  opacity: 0;
+  transition: all 2s;
+}
+
 .section {
   margin: 0 !important;
   padding: 20px;
@@ -48,14 +64,47 @@
   cursor: pointer;
 }
 
-.box.is-collapsed {
-  padding: 0 !important;
-  overflow: hidden;
-  max-width: 272px;
-  max-height: 358px;
-  margin: 10px auto;
+.box.is-collapsed img {
+  display: inline-block;
+  width: 144px;
+  height: 200px;
   background-size: cover;
-  background-position: center;
+  background-position: center center;
+  background-color: #eee;
+  animation: animate-bg infinite alternate-reverse;
+  -webkit-animation: animate-bg infinite alternate-reverse;
+}
+
+.box.is-collapsed {
+  text-align: center;
+  padding: 10px !important;
+  overflow: hidden;
+  margin: 10px auto;
+}
+
+.box.is-collapsed-stream img {
+  display: inline-block;
+  background-position: center center;
+  width: 320px;
+  height: 180px;
+  background-size: cover;
+  background-color: #eee;
+  animation: animate-bg infinite alternate-reverse;
+  -webkit-animation: animate-bg infinite alternate-reverse;
+}
+
+.box.is-collapsed-stream {
+  display: inline-block;
+}
+
+@keyframes animate-bg {
+  from { background-color: #eee; }
+  to { background-color: #aaa; }
+}
+
+@-webkit-keyframes animate-bg {
+  from { background-color: #eee; }
+  to { background-color: #aaa; }
 }
 
 .box.is-collapsed-icon {
@@ -87,6 +136,10 @@
 
 .icon {
     display: inline;
+}
+
+.navbar {
+  box-shadow:0 2px 10px 2px #00000033;
 }
 
 .navbar-end {

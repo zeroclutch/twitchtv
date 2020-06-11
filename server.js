@@ -1,3 +1,5 @@
+require('dotenv').config()
+
 // init project
 const express = require('express');
 const app = express();
@@ -97,7 +99,6 @@ app.get("/featuredStreams", function (request, response) {
 app.get("/user", function (request, response) {
   twitch.getUser(request.query.user)
   .then(data => {
-    console.log(data)
     response.send({
       title: data.stream.channel.status,
       name:data.stream.channel.display_name,
@@ -127,10 +128,8 @@ app.get("/followingStreams", function (request, response) {
   
   function getUserID(error, res, body) {
     if (!error && res.statusCode == 200) {
-      body = JSON.parse(body);
-      console.log(body)
+      body = JSON.parse(body)
       userID = body.users[0] ? body.users[0]._id : undefined;
-      console.log(userID);
       //Get following list
       var options = {
         url: 'https://api.twitch.tv/kraken/users/' + (userID || request.query.user) + '/follows/channels?limit=100',
@@ -201,8 +200,7 @@ app.get("/search", function (request, response) {
     .then(data => {
     if(data.games) {
       var results = [];
-      console.log(data.games[0])
-      for(var i = 0; i < data.games.length; i++) {
+      for(var i = 0; i < 20; i++) {
         const currentGame = data.games[i];
         results.push({name:currentGame.name, logo:currentGame.box.template.replace("{width}","14").replace("{height}", "20")})
       }
